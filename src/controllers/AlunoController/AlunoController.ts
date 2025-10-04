@@ -1,4 +1,4 @@
-import type { Request, Response } from "express";
+import { Request, Response } from "express";
 import AlunosService from "../../services/AlunoService/AlunoService";
 import AlunoPrismaRepository from "../../repositories/Prisma/AlunoPrismaRepository";
 
@@ -10,7 +10,6 @@ class AlunoController{
     async getAll(Req : Request, Res : Response) {
         try {
             const alunosDados = await alunoService.getAll();
-
             Res.status(200).json(alunosDados)
 
         } catch (err : any) {
@@ -89,10 +88,6 @@ class AlunoController{
             Res.status(400).json({error : err.message})
         }
     }
-
-    /*async getPageCadastrar(Req : Request, Res : Response) {
-        Res.render("aluno");
-    }*/
 }
 
 
