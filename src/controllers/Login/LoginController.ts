@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import AuthService from "../../services/AuthService/AuthService";
+import AuthService from "../../services/Auth/AuthService";
 import AlunoPrismaRepository from "../../repositories/Prisma/AlunoPrismaRepository";
 import { generateJWT } from "../../utils/jwt/jwt";
 
@@ -34,9 +34,6 @@ class LoginController{
             }
             return Res.status(500).json({ erro: "ERRO_INTERNO" });
         }
-
-        
-
     }
 }
 

@@ -23,7 +23,9 @@
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "jsonwebtoken": "^8.5.1",
-    "uuid": "^13.0.0"
+    "uuid": "^13.0.0",
+    "yuo": "^0.0.1",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
@@ -34,6 +36,7 @@
     "@types/node": "^24.5.2",
     "@types/nodemon": "^1.19.6",
     "@types/uuid": "^10.0.0",
+    "@types/yup": "^0.29.14",
     "nodemon": "^3.1.10",
     "prisma": "^6.16.2",
     "ts-node": "^10.9.2"

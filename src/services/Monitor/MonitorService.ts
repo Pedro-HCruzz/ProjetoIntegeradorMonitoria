@@ -17,8 +17,8 @@ class MonitorService {
                 throw new Error ("MONITOR_EXISTE")
             } 
 
-            const dadosAlunos = await this._monitorRepository.create(dados)
-            return dadosAlunos;
+            const dadosMonitor = await this._monitorRepository.create(dados)
+            return dadosMonitor;
         }
     async getById(id : string) : Promise <Monitor>{
         const monitorDados = await this._monitorRepository.getById(id)

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import MonitorService from "../../services/MonitorService/MonitorService";
+import MonitorService from "../../services/Monitor/MonitorService";
 import MonitorPrismaRepository from "../../repositories/Prisma/MonitorPrismaRepository";
 
 const monitorService = new MonitorService(new MonitorPrismaRepository);
@@ -10,7 +10,7 @@ class MonitorController{
     async getAll(Req : Request, Res : Response){
         try {
             const dadosMonitor = await monitorService.getAll();
-            Res.status(200).json(dadosMonitor)
+            return Res.status(200).json(dadosMonitor)
         } catch (err : any) {
             Res.status(500).json({err : err.message})
         }
@@ -18,11 +18,6 @@ class MonitorController{
     async create(req: Request, res: Response) {
         try {
             const dados = req.body;
-
-            if (!dados.nome || !dados.email) {
-                return res.status(400).json("DADOS_OBRIGATORIOS");
-            }
-
             const monitorCriado = await monitorService.create(dados);
 
             return res.status(201).json(monitorCriado);
@@ -36,50 +31,34 @@ class MonitorController{
     async getById(Req : Request, Res : Response){
         try {
             const {id} = Req.params;
+            const monitorDados = await monitorService.getById(id)
 
-            if (!id){
-                return Res.status(400).json("ID_OBRIGATORIO")
-            }
-
-            const alunosDados = await monitorService.getById(id)
-
-            Res.status(200).json(alunosDados)
+            return Res.status(200).json(monitorDados)
 
         } catch (err : any) {
-            Res.status(400).json({error : err.message})
+            return Res.status(400).json({error : err.message})
         }
     }
     async update(Req : Request, Res : Response){
         try {
             const {id} = Req.params
             const dados = Req.body
+            const monitorDados = await monitorService.update(id, dados)
 
-            if (!dados || !id){
-                return Res.status(400).json("DADOS_OBRIGATORIOS")
-            }
-
-            const alunoDados = await monitorService.update(id, dados)
-
-
-            Res.status(200).json(alunoDados)
+            return Res.status(200).json(monitorDados)
         } catch (err : any) {
-            Res.status(400).json({error : err.message})
+            return Res.status(400).json({error : err.message})
         }
     }
     async delete(Req : Request, Res : Response){
         try {
             const {id} = Req.params
+            const monitorDados = await monitorService.delete(id)
 
-            if (!id){
-                return Res.status(400).json("MONITOR_INEXISTENTE")
-            }
-
-            const alunoDados = await monitorService.delete(id)
-
-            Res.status(200).json(alunoDados)
+            return Res.status(200).json(monitorDados)
             
         } catch (err : any) {
-            Res.status(400).json({error : err.message})
+            return Res.status(400).json({error : err.message})
         }
     }
 }

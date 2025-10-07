@@ -1,0 +1,31 @@
+import * as yup from 'yup'
+
+
+const idSchema = yup.string().required("ID_OBRIGATORIO");
+
+export const alunoGetByIdSchema = yup.object({
+    id : idSchema
+});
+
+// validação de id e de dados diferentes para a rota put
+
+export const alunoUpdateIdSchema = yup.object({
+    id : idSchema
+})
+
+export const alunoUpdateSchema = yup.object({
+    nome : yup.string().optional(),
+    senha : yup.string().optional(),
+    email : yup.string().email().optional(),
+})
+
+export const alunoDeleteSchema = yup.object({
+    id : idSchema
+})
+
+export const alunoCreateSchema = yup.object({
+    nome : yup.string().required(),
+    senha : yup.string().required(),
+    email : yup.string().email().required(),
+});
+
