@@ -25,6 +25,7 @@ model Aluno {
   updatedAt  DateTime @updatedAt
 
   monitor    Monitor?
+  inscricoes Inscricao[]
 }
 
 model Monitor {
@@ -46,6 +47,8 @@ model Monitoria {
 
   disciplinaId   String
   disciplina     Disciplina   @relation(fields: [disciplinaId], references: [id])
+
+  inscricoes Inscricao[]
 }
 
 model Disciplina {
@@ -53,4 +56,14 @@ model Disciplina {
   nome        String
   descricao   String?
   monitorias  Monitoria[]
+}
+model Inscricao {
+  id String @id @default(uuid())
+  alunoId String
+  monitoriaId  String
+  criadoEm DateTime @default(now())
+
+  aluno Aluno @relation(fields: [alunoId], references: [id])
+  monitoria Monitoria @relation(fields: [monitoriaId], references: [id])
+
 }

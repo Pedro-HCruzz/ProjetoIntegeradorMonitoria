@@ -15,6 +15,8 @@ async function carregarMonitorias() {
             return;
         }
 
+        console.log(monitorias)
+
         lista.innerHTML = ""; // clear list before adding new items
 
         monitorias.forEach((m)  =>{
@@ -22,7 +24,8 @@ async function carregarMonitorias() {
 
         li.innerHTML = `
             <div class="disciplina">${m.nome_monitoria}</div>
-            <div>${m.disciplina}</div>
+            <div>${m.disciplina.nome}</div>
+            <div>${m.monitor.aluno.nome}</div>
             <div class="local">${m.local || "Local não informado"}</div>
             <div>${new Date(m.data).toLocaleDateString()} - ${new Date(m.hora_inicio).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</div>
             `

@@ -1,7 +1,7 @@
 import * as yup from 'yup'
 
 
-const idSchema = yup.string().required("ID_OBRIGATORIO");
+const idSchema = yup.string().uuid().required("ID_OBRIGATORIO");
 
 export const alunoGetByIdSchema = yup.object({
     id : idSchema

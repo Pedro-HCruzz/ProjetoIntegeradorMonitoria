@@ -5,7 +5,25 @@ import { Monitoria } from "@prisma/client";
 class MonitoriaPrismaRepository{
     
     async getAll(): Promise <Monitoria[]>{
-        const dadosMonitoria = await prisma.monitoria.findMany();
+        const dadosMonitoria = await prisma.monitoria.findMany({
+            include : {
+                disciplina : {
+                    select : {
+                        descricao : true,
+                        nome : true
+                    }
+                },
+                monitor : {
+                    select : {
+                        aluno : {
+                            select : {
+                                nome : true
+                            }
+                        }
+                    }
+                }
+            }
+        });
         return dadosMonitoria;
     }
     async getById(id : string) : Promise <Monitoria | null>{

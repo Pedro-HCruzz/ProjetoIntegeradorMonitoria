@@ -1,7 +1,7 @@
 import * as yup from 'yup'
 
 
-const idSchema = yup.string().required("ID_OBRIGATORIO");
+const idSchema = yup.string().uuid().required("ID_OBRIGATORIO");
 
 export const monitorGetByIdSchema = yup.object({
     id : idSchema
@@ -17,6 +17,6 @@ export const monitorDeleteSchema = yup.object({
 })
 
 export const monitorCreateSchema = yup.object({
-    id: yup.string().required("ALUNO_OBRIGATORIO")
+    id: yup.string().uuid().required("ALUNO_OBRIGATORIO")
 });
 
