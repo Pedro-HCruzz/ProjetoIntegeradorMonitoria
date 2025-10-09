@@ -14,33 +14,43 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Aluno{
-  id String @id @default(uuid())
-  nome String
-  senha String
-  email String @unique
-  telefone String?
-  created_At DateTime @default(now())
-  updated_At DateTime @updatedAt
+
+model Aluno {
+  id         String   @id @default(uuid())
+  nome       String
+  email      String   @unique
+  senha      String
+  matricula  String   @unique
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  monitor    Monitor?
 }
 
-
-model Monitor{
-  id String @id @default(uuid())
-  nome String
-  email String
-  monitorias Monitoria[] // estou dizendo que um monitor pode ter várias monitorias
+model Monitor {
+  id         String       @id
+  aluno     Aluno        @relation(fields: [id], references: [id])
+  monitorias  Monitoria[]
 }
 
 model Monitoria {
-  id String @id @default(uuid())
+  id             String      @id @default(uuid())
   nome_monitoria String
-  disciplina String
-  data DateTime
-  hora_inicio DateTime
-  hora_fim DateTime
-  local String?
+  data           DateTime
+  hora_inicio    DateTime
+  hora_fim       DateTime
+  local          String?
 
-  monitorId String // chave estrangeira da tabela monitor
-  monitor Monitor @relation(fields: [monitorId], references: [id]) // campo que relaciona com a tabela monitor e permite consultas
+  monitorId      String
+  monitor        Monitor      @relation(fields: [monitorId], references: [id])
+
+  disciplinaId   String
+  disciplina     Disciplina   @relation(fields: [disciplinaId], references: [id])
+}
+
+model Disciplina {
+  id          String       @id @default(uuid())
+  nome        String
+  descricao   String?
+  monitorias  Monitoria[]
 }

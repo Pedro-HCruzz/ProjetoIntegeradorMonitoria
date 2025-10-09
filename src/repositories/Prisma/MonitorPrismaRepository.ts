@@ -3,18 +3,14 @@ import { Monitor } from "@prisma/client";
 
 class MonitorPrismaRepository{
     async getAll(): Promise <Monitor[]>{
-        const dadosMonitor = await prisma.monitor.findMany();
+        const dadosMonitor = await prisma.monitor.findMany({
+            include : {
+                aluno : true,
+                monitorias : true
+            }
+        });
         return dadosMonitor;
     }
-    async findByEmail(email : string) : Promise <Monitor | null>{
-            const monitorEmail = await prisma.monitor.findFirst({
-                where : {
-                    email : email
-                }
-            })
-    
-            return monitorEmail;
-        }
     async getById(id : string) : Promise <Monitor | null>{
         const monitorDados = await prisma.monitor.findFirst({
             where : {
@@ -42,7 +38,7 @@ class MonitorPrismaRepository{
         return monitorAtualizado;
 
     }
-    async delete(id : string) : Promise <Monitor>{
+    async delete(id : string) : Promise <Monitor | null>{
         const monitorApagado = await prisma.monitor.delete({
             where : {
                 id : id

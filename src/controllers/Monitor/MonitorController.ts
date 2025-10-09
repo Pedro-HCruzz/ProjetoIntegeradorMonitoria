@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import MonitorService from "../../services/Monitor/MonitorService";
 import MonitorPrismaRepository from "../../repositories/Prisma/MonitorPrismaRepository";
+import AlunoPrismaRepository from "../../repositories/Prisma/AlunoPrismaRepository";
 
-const monitorService = new MonitorService(new MonitorPrismaRepository);
+const monitorService = new MonitorService(new MonitorPrismaRepository, new AlunoPrismaRepository);
 
 class MonitorController{
 
@@ -15,16 +16,22 @@ class MonitorController{
             Res.status(500).json({err : err.message})
         }
     }
-    async create(req: Request, res: Response) {
+    async create(Req: Request, Res: Response) {
         try {
-            const dados = req.body;
+            const dados = Req.body;
             const monitorCriado = await monitorService.create(dados);
 
-            return res.status(201).json(monitorCriado);
+            return Res.status(201).json(monitorCriado);
 
         } catch (err: any) {
-            console.error(err);
-            return res.status(500).json({ erro: "ERRO_INTERNO" });
+
+            if (err.message === "ALUNO_INEXISTENTE") {
+                return Res.status(400).json({ error: err.message });
+            }
+            if (err.message === "MONITOR_EXISTE") {
+                return Res.status(400).json({ error: err.message });
+            }
+            return Res.status(500).json({ error: "ERRO_INTERNO_DO_SERVIDOR" });
         }
     }
 

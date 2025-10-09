@@ -25,10 +25,7 @@ class AlunoController{
             return Res.status(200).json(dadosAlunos);
             
         } catch (err : any) {
-            if (err.message === "EMAIL_EXISTE") {
-                return Res.status(400).json({ erro: "EMAIL_EXISTE" });
-            }
-            return Res.status(500).json({ erro: "ERRO_INTERNO" });
+            return Res.status(400).json({ erro: err.message });
         }
     }
     

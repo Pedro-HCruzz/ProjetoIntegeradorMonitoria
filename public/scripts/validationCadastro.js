@@ -8,7 +8,7 @@ form.addEventListener("submit", async (e) => {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData); // dados que o usuário digitou
     
-    if (!data.nome || !data.senha || !data.email) {
+    if (!data.nome || !data.senha || !data.email || !data.matricula) {
         mensagem.textContent = "Preencha todos os campos.";
         mensagem.style.color = "red";
         return;
@@ -27,7 +27,6 @@ form.addEventListener("submit", async (e) => {
 
         const result = await res.json();
 
-            // agora trata os diferentes casos de status ou erro
         if (!res.ok) {
             if (result.erro === "EMAIL_EXISTE") {
                 mensagem.textContent = "Esse email já está cadastrado!";
@@ -38,9 +37,7 @@ form.addEventListener("submit", async (e) => {
             }
             mensagem.style.color = "red";
         } else {
-            // sucesso
-            
-                window.location.href = 'login.html'; // redireciono para o login 
+            window.location.href = 'login.html'; 
         }
 
     } catch (err) {
