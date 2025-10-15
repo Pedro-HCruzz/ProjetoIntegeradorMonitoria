@@ -1,0 +1,73 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+}
+
+h1 {
+  color: #333;
+}
+
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px 15px;
+  margin: 8px;
+  font-size: 17px;
+}
+
+.boasvindas {
+  padding: 20px;
+}
+
+h2#titulomonitorias{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+.sectionmonitorias {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; 
+  padding: 40px 0;
+}
+
+
+.exibirmonitorias {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+}
+
+
+#listamonitorias {
+  display: flex;
+  flex-direction: row;  
+  justify-content: center; 
+  gap: 20px; 
+}
+
+
+.cardmonitoria {
+  height: 200px;
+  width: 400px;
+  text-align: center;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.322);
+  transition: 0.3s;
+}
+.cardmonitoria:hover{
+    transform: scale(1.1);
+}

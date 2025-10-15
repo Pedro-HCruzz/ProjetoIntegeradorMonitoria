@@ -2,6 +2,7 @@
 import { Router } from "express";
 import AlunoController from "../controllers/Aluno/AlunoController";
 import { validateSchema } from "../middlewares/validateSchemaMiddleware";
+import { authMiddleware, AuthRequest } from "../middlewares/authMiddleware";
 
 import * as schema from "../schemas/alunoSchema";
 

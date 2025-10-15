@@ -1,41 +1,58 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
-
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-
+// -------------------------
+// Tabela Aluno
+// -------------------------
 model Aluno {
-  id         String   @id @default(uuid())
+  id         String      @id @default(dbgenerated("gen_random_uuid()"))
   nome       String
-  email      String   @unique
+  email      String      @unique
   senha      String
-  matricula  String   @unique
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  matricula  String      @unique
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
 
   monitor    Monitor?
   inscricoes Inscricao[]
+
+  @@map("tb_aluno")
 }
 
+// -------------------------
+// Tabela Monitor
+// -------------------------
 model Monitor {
-  id         String       @id
-  aluno     Aluno        @relation(fields: [id], references: [id])
-  monitorias  Monitoria[]
+  id         String      @id
+  aluno      Aluno       @relation(fields: [id], references: [id])
+  monitorias Monitoria[]
+
+  @@map("tb_monitor")
 }
 
+// -------------------------
+// Tabela Disciplina
+// -------------------------
+model Disciplina {
+  id         String      @id @default(uuid()) 
+  nome       String
+  descricao  String?
+  monitorias Monitoria[]
+
+  @@map("tb_disciplina")
+}
+
+// -------------------------
+// Tabela Monitoria
+// -------------------------
 model Monitoria {
-  id             String      @id @default(uuid())
+  id             String      @id @default(dbgenerated("gen_random_uuid()"))
   nome_monitoria String
   data           DateTime
   hora_inicio    DateTime
@@ -48,22 +65,24 @@ model Monitoria {
   disciplinaId   String
   disciplina     Disciplina   @relation(fields: [disciplinaId], references: [id])
 
-  inscricoes Inscricao[]
+  inscricoes     Inscricao[]
+
+  @@map("tb_monitoria")
 }
 
-model Disciplina {
-  id          String       @id @default(uuid())
-  nome        String
-  descricao   String?
-  monitorias  Monitoria[]
-}
+// -------------------------
+// Tabela Inscricao
+// -------------------------
 model Inscricao {
-  id String @id @default(uuid())
-  alunoId String
+  id           String      @id @default(dbgenerated("gen_random_uuid()"))
+  alunoId      String
   monitoriaId  String
-  criadoEm DateTime @default(now())
+  criadoEm     DateTime    @default(now())
 
-  aluno Aluno @relation(fields: [alunoId], references: [id])
-  monitoria Monitoria @relation(fields: [monitoriaId], references: [id])
+  aluno        Aluno       @relation(fields: [alunoId], references: [id])
+  monitoria    Monitoria   @relation(fields: [monitoriaId], references: [id])
 
+  @@unique([alunoId, monitoriaId])
+
+  @@map("tb_inscricoes")
 }

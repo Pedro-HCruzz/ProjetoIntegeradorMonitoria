@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Monitorias</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .card {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      width: 250px;
+    }
+
+    .btn-inscrever {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .btn-inscrito {
+      background-color: #28a745;
+    }
+
+    .btn-inscrever:active {
+      transform: scale(0.95);
+    }
+
+    /* Popup */
+    .popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .popup-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      transform: scale(0.8);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .popup:not(.hidden) .popup-content {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .popup-content button {
+      margin: 5px;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #btnCancelarInscricao {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    #btnFecharPopup {
+      background-color: #6c757d;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Monitorias disponíveis</h1>
+
+  <!-- Cards de exemplo -->
+  <div class="card">
+    <h3>Monitoria de Matemática</h3>
+    <button class="btn-inscrever">Inscreva-se</button>
+  </div>
+
+  <div class="card">
+    <h3>Monitoria de Física</h3>
+    <button class="btn-inscrever">Inscreva-se</button>
+  </div>
+
+  <!-- Popup -->
+  <div id="popup" class="popup hidden">
+    <div class="popup-content">
+      <p>Deseja cancelar sua inscrição?</p>
+      <button id="btnCancelarInscricao">Cancelar inscrição</button>
+      <button id="btnFecharPopup">Fechar</button>
+    </div>
+  </div>
+
+  <script>
+    // Pegando todos os botões
+    const botoes = document.querySelectorAll(".btn-inscrever");
+    const popup = document.getElementById("popup");
+    let botaoAtual = null; // guarda qual botão abriu o popup
+
+    botoes.forEach(botao => {
+      botao.addEventListener("click", () => {
+        if (botao.classList.contains("btn-inscrito")) {
+          // Se já estiver inscrito, abre popup
+          botaoAtual = botao;
+          popup.classList.remove("hidden");
+        } else {
+          // Marca como inscrito
+          botao.textContent = "Inscrito";
+          botao.classList.add("btn-inscrito");
+
+          // Animação rápida
+          botao.animate([
+            { transform: "scale(1)" },
+            { transform: "scale(1.1)" },
+            { transform: "scale(1)" }
+          ], { duration: 300 });
+        }
+      });
+    });
+
+    // Botões do popup
+    document.getElementById("btnFecharPopup").addEventListener("click", () => {
+      popup.classList.add("hidden");
+    });
+
+    document.getElementById("btnCancelarInscricao").addEventListener("click", () => {
+      if (botaoAtual) {
+        botaoAtual.textContent = "Inscreva-se";
+        botaoAtual.classList.remove("btn-inscrito");
+      }
+      popup.classList.add("hidden");
+    });
+  </script>
+
+</body>
+</html>

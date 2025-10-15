@@ -4,53 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background: #f7f7f7;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        li {
-            background: white;
-            padding: 10px 15px;
-            margin: 8px 0;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        .disciplina {
-            font-weight: bold;
-        }
-
-        .local {
-            color: gray;
-        }
-    </style>
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/stylePopUp.css">
 </head>
 <body>
+    <div class="boasvindas">
+        <h1>
+            Bem vindo, <span id="usuarioNome"></span>!
+        </h1>
+    </div>
 
-    <h1>
-        Bem vindo, <span id="usuarioNome"></span>
-    </h1>
+    <section class="sectionmonitorias">.
+        <div class="exibirmonitorias">
+            <h2 id="titulomonitorias">Monitorias Disponíveis</h2>
+                <ul id="listamonitorias">
+                    <li>Carregando monitorias...</li>
+                </ul>
+        </div>
+    </section>
 
-
-    <h2>Monitorias Disponíveis</h2>
-
-    <ul id="lista-monitorias">
-        <li>Carregando monitorias...</li>
-    </ul>
     
-    <script src="scripts/carregarNomeUsuario.js"></script>
-    <script src="scripts/carregarMonitorias.js"></script>
+    <script type="module" src="scripts/carregarNomeUsuario.js"></script>
+    <script type="module" src="scripts/carregarMonitorias.js"></script>
 </body>
 </html>

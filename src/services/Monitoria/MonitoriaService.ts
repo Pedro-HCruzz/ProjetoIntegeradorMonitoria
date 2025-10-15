@@ -10,6 +10,7 @@ class MonitoriaService {
         const dadosmonitoria = await this._monitoriaRepository.getAll();
         return dadosmonitoria;
     }
+
     async create(dados : Monitoria) : Promise<Monitoria>{
             const dadosMonitoria = await this._monitoriaRepository.create(dados)
             return dadosMonitoria;

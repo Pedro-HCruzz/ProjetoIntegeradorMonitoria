@@ -1,38 +1,158 @@
+import { getAlunoId } from "./carregarNomeUsuario.js";
+
+
 async function carregarMonitorias() {
-    const lista = document.getElementById("lista-monitorias")
+    const lista = document.getElementById("listamonitorias")
 
     try {
         const response = await fetch("http://localhost:3000/monitoria")
+        const respInscricao = await fetch("http://localhost:3000/inscricoes/aluno", {
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            }
+        })
+
 
         if (!response.ok){
             throw new Error ("ERRO_AO_CARREGAR");
         }
 
         const monitorias = await response.json();
+        const inscricoes = await respInscricao.json();
 
         if (monitorias.length === 0){
             lista.innerHTML = "Nenhuma monitoria encontrada!"
             return;
         }
 
-        console.log(monitorias)
+        lista.innerHTML = ""; 
 
-        lista.innerHTML = ""; // clear list before adding new items
+        // 🔹 Cria o popup global
+        const popup = document.createElement("div");
+        popup.classList.add("popup", "hidden");
 
-        monitorias.forEach((m)  =>{
+        popup.innerHTML = `
+        <div class="popup-content">
+            <p>Deseja cancelar sua inscrição?</p>
+            <button class="btn-cancelar">Cancelar inscrição</button>
+            <button class="btn-fechar">Fechar</button>
+        </div>
+        `;
+        document.body.appendChild(popup);
+
+        // 🔹 Seleciona botões do popup
+        const btnCancelarInscricaoPopup = popup.querySelector(".btn-cancelar");
+        const btnFecharPopup = popup.querySelector(".btn-fechar");
+
+        // 🔹 Renderizar as monitorias
+        monitorias.forEach((m) => {
             const li = document.createElement("li");
+            li.classList.add("cardmonitoria");
 
-        li.innerHTML = `
-            <div class="disciplina">${m.nome_monitoria}</div>
-            <div>${m.disciplina.nome}</div>
-            <div>${m.monitor.aluno.nome}</div>
-            <div class="local">${m.local || "Local não informado"}</div>
-            <div>${new Date(m.data).toLocaleDateString()} - ${new Date(m.hora_inicio).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</div>
-            `
+            li.innerHTML = `
+                <div class="informacoesmonitoria">
+                <div class="nomemonitoria">${m.nome_monitoria}</div>
+                <div class="disciplinamonitoria">${m.disciplina.nome}</div>
+                <div class="monitormonitoria">${m.monitor.aluno.nome}</div>
+                <div class="localmonitoria">${m.local || "Local não informado"}</div>
+                <div class="datamonitoria">
+                    ${new Date(m.data).toLocaleDateString()} - 
+                    ${new Date(m.hora_inicio).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}
+                </div>
+                </div>
+            `;
+
+            // 🔹 Botão de inscrição
+            const divBotao = document.createElement("div");
+            const botaoInscrever = document.createElement("button");
+            botaoInscrever.dataset.id = m.id;
+
+            const jaInscrito = inscricoes.find((i) => i.monitoriaId === m.id)
+
+
+            if (jaInscrito) {
+                botaoInscrever.textContent = "Inscrito";
+                botaoInscrever.classList.add("btn-inscrito");
+                botaoInscrever.dataset.inscricaoId = jaInscrito.id // salvando o id da inscrição no button 
+            } else {
+                botaoInscrever.textContent = "Inscreva-se";
+                botaoInscrever.classList.add("btn-inscrever");
+            }
+
+            divBotao.appendChild(botaoInscrever);
+            li.appendChild(divBotao);
+
+            // 🔹 Evento do botão de se inscrever
+            botaoInscrever.addEventListener("click", async () => { // lógica da inscrição
+                const alunoId = getAlunoId()
+                
+                if (botaoInscrever.classList.contains("btn-inscrito")){
+                    popup.classList.remove("hidden")
+                    popup.dataset.targetButtonId = m.id;
+                    return;
+                }
+                try {
+                    const responseFazerInscricao = await fetch(`http://localhost:3000/inscricoes`, {
+                        method : "POST",
+                        headers : {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${localStorage.getItem("token")}`
+                        },
+                        body : JSON.stringify({alunoId : alunoId, monitoriaId : m.id})
+                    })
+
+                    if (!responseFazerInscricao.ok){
+                        throw new Error ("ERRO_AO_FAZER_INSCRICAO")
+                    }
+
+                    const dadosDaInscricao = await responseFazerInscricao.json();
+
+                    botaoInscrever.textContent = "Inscrito";
+                    botaoInscrever.classList.remove("btn-inscrever");
+                    botaoInscrever.classList.add("btn-inscrito");
+                    botaoInscrever.dataset.inscricaoId = dadosDaInscricao.id; // aqui a gente pega o id da inscricao para poder mandar nos params do delete depois 
+                } catch (err) {
+                    lista.innerHTML = `<li>Erro ao carregar inscricao: ${err.message}</li>`;
+                }
+            });
+
             lista.appendChild(li);
-        })
+        });
+
+        // 🔹 Eventos globais do popup
         
-        
+        btnFecharPopup.addEventListener("click", () => {
+            popup.classList.add("hidden");
+        });
+
+        btnCancelarInscricaoPopup.addEventListener("click", async () => {
+            const monitoriaAtiva = popup.dataset.targetButtonId;
+            const botao = document.querySelector(`button[data-id="${monitoriaAtiva}"]`);
+            const inscricaoId = botao.dataset.inscricaoId;
+
+            try {
+                const responseCancelarInscricao = await fetch(`http://localhost:3000/inscricoes/${inscricaoId}` , { 
+                    method : "DELETE",
+                    headers : {
+                        "Authorization" : `Bearer ${localStorage.getItem("token")}`
+                    }
+                });
+
+                if(!responseCancelarInscricao.ok){
+                    throw new Error ("ERRO_AO_CANCELAR")
+                }
+
+                botao.textContent = "Inscreva-se";
+                botao.classList.remove("btn-inscrito");
+                botao.classList.add("btn-inscrever");
+                delete botao.dataset.inscricaoId;
+                popup.classList.add("hidden");
+
+            } catch (err) {
+                alert("Erro ao cancelar inscrição. Tente novamente.");
+
+            }
+        });
 
     } catch (err) {
         lista.innerHTML = `<li>Erro ao carregar monitorias: ${err.message}</li>`;
