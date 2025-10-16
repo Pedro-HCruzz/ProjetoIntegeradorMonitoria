@@ -5,15 +5,9 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', sans-serif;
   background: #f7f7f7;
 }
-
-h1 {
-  color: #333;
-}
-
-
 ul {
   list-style: none;
   padding: 0;
@@ -26,13 +20,128 @@ li {
 }
 
 .boasvindas {
-  padding: 20px;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.boasvindas h1 {
+  font-size: 2.0rem;
+  color: #222;
+  font-weight: 600;
+}
+
+/* container da busca */
+.divBuscar {
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* campo de busca */
+#buscaMonitoria {
+  width: 60%;
+  padding: 10px 40px 10px 40px; /* espaço p/ a lupa */
+  border: 1.5px solid #ccc;
+  border-radius: 25px;
+  background-color: transparent;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  color: #333;
+}
+
+#buscaMonitoria:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+/* Ícone de lupa */
+.icone-lupa {
+  position: absolute;
+  left: calc(20% + 15px); /* Ajusta horizontalmente conforme a largura do input */
+  top: 50%; /* Centraliza verticalmente */
+  transform: translateY(-50%); /* Corrige o alinhamento no centro exato */
+  width: 22px;
+  height: 22px;
+  opacity: 0.7;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+
+#buscaMonitoria:focus + .icone-lupa,
+.divBuscar:hover .icone-lupa {
+  opacity: 1;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  #buscaMonitoria {
+    width: 90%;
+    padding-left: 40px;
+  }
+
+  .icone-lupa {
+    left: 35px;
+  }
+}
+
+
+
+/* ícone de perfil */
+.icone-perfil {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.icone-perfil:hover {
+  transform: scale(1.05);
+}
+
+/* responsividade */
+@media (max-width: 768px) {
+  .boasvindas {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .divBuscar {
+    width: 100%;
+  }
+
+  #buscaMonitoria {
+    width: 90%;
+  }
+
+  .divBuscar::before {
+    left: 35px;
+  }
+}
+
+.icone-perfil {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* deixa o ícone redondo */
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.icone-perfil:hover {
+  transform: scale(1.1); /* leve zoom ao passar o mouse */
 }
 
 h2#titulomonitorias{
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+
 }
 .sectionmonitorias {
   display: flex;
@@ -45,29 +154,141 @@ h2#titulomonitorias{
 
 .exibirmonitorias {
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px;
   display: flex;
   flex-direction: column; 
   align-items: center;
+  margin: 0;
+  padding: 20px;
 }
 
 
 #listamonitorias {
-  display: flex;
-  flex-direction: row;  
-  justify-content: center; 
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);  /* 4 por linha */
   gap: 20px; 
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
 }
 
 
 .cardmonitoria {
-  height: 200px;
-  width: 400px;
+  background-color: rgba(128, 128, 128, 0.192);
+  border: 1px solid #ccc;
+  padding: 15px;
   text-align: center;
-  border-radius: 20px;
-  background-color: rgba(0, 0, 0, 0.322);
+  margin-bottom: 15px;
+  border-radius: 8px;
+  width: 300px;
   transition: 0.3s;
 }
 .cardmonitoria:hover{
-    transform: scale(1.1);
+  transform: scale(1.1);
+}
+.divbotao{
+  margin-top: 20px;
+}
+
+
+/* === Fundo do popup === */
+.popup {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
+}
+
+/* Quando o popup é exibido */
+.popup:not(.hidden) {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* === Card do popup === */
+.popup-content {
+  background: #ffffff;
+  color: #222;
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 90%;
+  transform: translateY(-20px);
+  transition: transform 0.3s ease;
+  position: relative;
+  animation: slideUp 0.3s ease forwards;
+}
+
+/* Animação de subida suave */
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* === Título da monitoria === */
+.popup-content h2 {
+  font-size: 1.6rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 0.4rem;
+}
+
+/* === Parágrafos de informação === */
+.popup-content p {
+  font-size: 1.1rem;
+  margin: 0.6rem 0;
+  line-height: 1.5;
+}
+
+/* Dar destaque ao nome da disciplina e do monitor */
+#popupDisciplina, #popupMonitor {
+  font-weight: 600;
+  color: #34495e;
+}
+
+/* Local e data/hora com estilo mais suave */
+#popupLocal, #popupDataHora {
+  color: #555;
+}
+
+/* === Botão de fechar (X) === */
+.popup-content::after {
+  position: absolute;
+  top: 10px;
+  right: 18px;
+  font-size: 1.8rem;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.popup-content::after:hover {
+  color: #000;
+}
+
+/* === Responsividade === */
+@media (max-width: 480px) {
+  .popup-content {
+    padding: 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .popup-content h2 {
+    font-size: 1.3rem;
+  }
 }

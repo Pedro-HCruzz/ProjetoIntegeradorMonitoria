@@ -5,8 +5,8 @@ async function carregarMonitorias() {
     const lista = document.getElementById("listamonitorias")
 
     try {
-        const response = await fetch("http://localhost:3000/monitoria")
-        const respInscricao = await fetch("http://localhost:3000/inscricoes/aluno", {
+        const response = await fetch("http://localhost:3000/monitoria") // pegar todas as monitorias do backend
+        const respInscricao = await fetch("http://localhost:3000/inscricoes/aluno", { // pegar inscricoes do aluno em alguma monitoria
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             }
@@ -27,7 +27,8 @@ async function carregarMonitorias() {
 
         lista.innerHTML = ""; 
 
-        // 🔹 Cria o popup global
+        // 🔹 Cria o popup global - popup relacionado a inscrição 
+
         const popup = document.createElement("div");
         popup.classList.add("popup", "hidden");
 
@@ -53,8 +54,6 @@ async function carregarMonitorias() {
                 <div class="informacoesmonitoria">
                 <div class="nomemonitoria">${m.nome_monitoria}</div>
                 <div class="disciplinamonitoria">${m.disciplina.nome}</div>
-                <div class="monitormonitoria">${m.monitor.aluno.nome}</div>
-                <div class="localmonitoria">${m.local || "Local não informado"}</div>
                 <div class="datamonitoria">
                     ${new Date(m.data).toLocaleDateString()} - 
                     ${new Date(m.hora_inicio).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}
@@ -62,8 +61,40 @@ async function carregarMonitorias() {
                 </div>
             `;
 
+            // lógica para o popup ao clicar nas monitorias e mostrar informações 
+
+            const popupInfoMonitoria = document.getElementById("popupInfoMonitoria");
+            const popupTitulo = document.getElementById("popupTitulo");
+            const popupDisciplina = document.getElementById("popupDisciplina");
+            const popupMonitor = document.getElementById("popupMonitor");
+            const popupLocal = document.getElementById("popupLocal");
+            const popupDataHora = document.getElementById("popupDataHora");
+
+
+            popupInfoMonitoria.addEventListener("click", (e) => {
+            if (e.target === popupInfoMonitoria) popupInfoMonitoria.classList.add("hidden"); // fecha clicando fora do conteúdo
+            });
+
+
+            li.addEventListener("click", (e) => {
+                if (e.target.tagName.toLowerCase() === "button") return;
+                
+                popupTitulo.textContent = m.nome_monitoria;
+                popupDisciplina.textContent = `Disciplina: ${m.disciplina.nome}`;
+                popupMonitor.textContent = `Monitor: ${m.monitor.aluno.nome}`;
+                popupLocal.textContent = `Local: ${m.local}`;
+                popupDataHora.textContent = `Data/Hora: ${new Date(m.data).toLocaleDateString()} - ${new Date(m.hora_inicio).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}`;
+
+
+                popupInfoMonitoria.classList.remove("hidden");
+            });
+
+
+
             // 🔹 Botão de inscrição
+
             const divBotao = document.createElement("div");
+            divBotao.classList.add("divbotao")
             const botaoInscrever = document.createElement("button");
             botaoInscrever.dataset.id = m.id;
 
@@ -83,6 +114,7 @@ async function carregarMonitorias() {
             li.appendChild(divBotao);
 
             // 🔹 Evento do botão de se inscrever
+
             botaoInscrever.addEventListener("click", async () => { // lógica da inscrição
                 const alunoId = getAlunoId()
                 
@@ -131,7 +163,7 @@ async function carregarMonitorias() {
             const inscricaoId = botao.dataset.inscricaoId;
 
             try {
-                const responseCancelarInscricao = await fetch(`http://localhost:3000/inscricoes/${inscricaoId}` , { 
+                const responseCancelarInscricao = await fetch(`http://localhost:3000/inscricoes/${inscricaoId}` , { // fetch para a rota de deletar uma inscrição, pegando o id da inscrição e passando nos params da rota
                     method : "DELETE",
                     headers : {
                         "Authorization" : `Bearer ${localStorage.getItem("token")}`

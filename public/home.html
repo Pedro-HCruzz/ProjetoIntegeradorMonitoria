@@ -12,6 +12,13 @@
         <h1>
             Bem vindo, <span id="usuarioNome"></span>!
         </h1>
+
+        <div class="divBuscar">
+            <img src="assets/img/lupa.png" alt="" class="icone-lupa">
+            <input type="text" id="buscaMonitoria" placeholder="Buscar monitoria...">
+        </div>
+
+        <img src="assets/img/user.png" class="icone-perfil">
     </div>
 
     <section class="sectionmonitorias">.
@@ -22,6 +29,18 @@
                 </ul>
         </div>
     </section>
+
+    <div id="popupInfoMonitoria" class="popup hidden">
+        <div class="popup-content">
+            <h2 id="popupTitulo"></h2>
+            <p id="popupDisciplina"></p>
+            <p id="popupMonitor"></p>
+            <p id="popupLocal"></p>
+            <p id="popupDataHora"></p>
+        </div>
+    </div>
+
+    
 
     
     <script type="module" src="scripts/carregarNomeUsuario.js"></script>
