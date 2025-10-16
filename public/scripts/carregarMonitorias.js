@@ -5,18 +5,26 @@ async function carregarMonitorias() {
     const lista = document.getElementById("listamonitorias")
 
     try {
-        const response = await fetch("http://localhost:3000/monitoria") // pegar todas as monitorias do backend
-        const respInscricao = await fetch("http://localhost:3000/inscricoes/aluno", { // pegar inscricoes do aluno em alguma monitoria
+        // pegar todas as monitorias do backend
+
+        const response = await fetch("http://localhost:3000/monitoria" , { 
+            headers : {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            }
+        }) 
+
+        // pegar inscricoes do aluno em alguma monitoria
+        const respInscricao = await fetch("http://localhost:3000/inscricoes/aluno", { 
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             }
         })
 
-
         if (!response.ok){
             throw new Error ("ERRO_AO_CARREGAR");
         }
 
+        // pegando o objeto json que retornar para manipular informações, como dados da monitoria ( local, data, disciplina) e dados da inscricao (principalmente o id da inscricao para depois podermos excluir )
         const monitorias = await response.json();
         const inscricoes = await respInscricao.json();
 
@@ -104,7 +112,7 @@ async function carregarMonitorias() {
             if (jaInscrito) {
                 botaoInscrever.textContent = "Inscrito";
                 botaoInscrever.classList.add("btn-inscrito");
-                botaoInscrever.dataset.inscricaoId = jaInscrito.id // salvando o id da inscrição no button 
+                botaoInscrever.dataset.inscricaoId = jaInscrito.id // salvando o id da inscrição no button `
             } else {
                 botaoInscrever.textContent = "Inscreva-se";
                 botaoInscrever.classList.add("btn-inscrever");
@@ -157,6 +165,8 @@ async function carregarMonitorias() {
             popup.classList.add("hidden");
         });
 
+        //Cancelar uma inscricao
+
         btnCancelarInscricaoPopup.addEventListener("click", async () => {
             const monitoriaAtiva = popup.dataset.targetButtonId;
             const botao = document.querySelector(`button[data-id="${monitoriaAtiva}"]`);
@@ -185,6 +195,19 @@ async function carregarMonitorias() {
 
             }
         });
+
+        // Lógica para filtrar as monitorias
+        
+        const buscarMonitoria = document.getElementById("buscaMonitoria");
+        const filtrar = () => {
+            const termo = buscarMonitoria.value.toLowerCase();
+            document.querySelectorAll(".cardmonitoria").forEach(card => {
+                const nomeMonitoria = card.querySelector(".nomemonitoria").textContent.toLowerCase();
+                card.style.display = nomeMonitoria.includes(termo) ? "" : "none";
+            });
+        };
+
+        buscarMonitoria.addEventListener("input", filtrar);
 
     } catch (err) {
         lista.innerHTML = `<li>Erro ao carregar monitorias: ${err.message}</li>`;

@@ -5,7 +5,7 @@ import "dotenv/config";
 // Extendendo o Request para incluir user
 
 export interface AuthRequest extends Request { // criando um type authrequest para atribuirmos o req.user 
-
+  
   user?: {
     id: string;
     nome: string;

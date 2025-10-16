@@ -1,0 +1,18 @@
+// src/routes/alunoRoutes.ts
+import { Router } from "express";
+import AlunoController from "../../controllers/Aluno/AlunoController";
+import { validateSchema } from "../../middlewares/validateSchemaMiddleware";
+import { authMiddleware, AuthRequest } from "../../middlewares/authMiddleware";
+
+import * as schema from "../../schemas/alunoSchema";
+
+const alunoController = new AlunoController();
+const router = Router();
+
+router.get("/", authMiddleware,  alunoController.getAll);
+router.get("/:id", authMiddleware,  validateSchema(schema.alunoGetByIdSchema, "params"), alunoController.getById);
+router.post("/",  validateSchema(schema.alunoCreateSchema) , alunoController.create);
+router.put("/:id", authMiddleware,  validateSchema(schema.alunoUpdateIdSchema, "params"), validateSchema(schema.alunoUpdateSchema, "body") , alunoController.update);
+router.delete("/:id", authMiddleware,  validateSchema(schema.alunoDeleteSchema, "params"), alunoController.delete);
+
+export default router;

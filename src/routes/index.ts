@@ -1,12 +1,12 @@
 
 import { Router } from "express";
-import alunoRoutes from "./alunoRoutes";
-import loginRoutes from "./loginRoutes";
-import userRoutes from "./userRoutes";
-import monitorRoutes from "./monitorRoutes"
-import monitoriaRoutes from "./monitoriaRoutes"
-import disciplinaRoutes from "./disciplinaRoutes"
-import inscriacaoRoutes from "./inscricaoRoutes"
+import alunoRoutes from "../routes/Aluno/alunoRoutes"
+import loginRoutes from "../routes/Paginas/loginRoutes"
+import homeRoutes from "../routes/Paginas/homeRoutes";
+import monitorRoutes from "../routes/Monitor/monitorRoutes"
+import monitoriaRoutes from "../routes/Monitoria/monitoriaRoutes"
+import disciplinaRoutes from "../routes/Disciplina/disciplinaRoutes"
+import inscriacaoRoutes from "../routes/Inscricao/inscricaoRoutes"
 
 const router = Router();
 
@@ -16,6 +16,6 @@ router.use("/disciplina" , disciplinaRoutes )
 router.use("/monitoria" , monitoriaRoutes )
 router.use("/inscricoes" , inscriacaoRoutes)
 router.use("/login", loginRoutes);
-router.use("/user" , userRoutes )
+router.use("/home" , homeRoutes )
 
 export default router;
