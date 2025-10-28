@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import DisciplinaService from "../../services/Disciplina/DisciplinaService";
-import DisciplinaPrismaRepository from "../../repositories/Prisma/DisciplinaPrismaRepository";
+import DisciplinaService from "../../services/Disciplina/DisciplinaService.js";
+import DisciplinaPrismaRepository from "../../repositories/Prisma/DisciplinaPrismaRepository.js";
 
 const disciplinaService = new DisciplinaService(new DisciplinaPrismaRepository);
 

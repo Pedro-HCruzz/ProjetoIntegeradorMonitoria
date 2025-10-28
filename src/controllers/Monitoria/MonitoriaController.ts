@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import MonitoriaService from "../../services/Monitoria/MonitoriaService";
-import MonitoriaPrismaRepository from "../../repositories/Prisma/MonitoriaPrismaRepository";
+import MonitoriaService from "../../services/Monitoria/MonitoriaService.js";
+import MonitoriaPrismaRepository from "../../repositories/Prisma/MonitoriaPrismaRepository.js";
 
 const monitoriaService = new MonitoriaService(new MonitoriaPrismaRepository);
 

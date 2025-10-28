@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import MonitorService from "../../services/Monitor/MonitorService";
-import MonitorPrismaRepository from "../../repositories/Prisma/MonitorPrismaRepository";
-import AlunoPrismaRepository from "../../repositories/Prisma/AlunoPrismaRepository";
+import MonitorService from "../../services/Monitor/MonitorService.js";
+import MonitorPrismaRepository from "../../repositories/Prisma/MonitorPrismaRepository.js";
+import AlunoPrismaRepository from "../../repositories/Prisma/AlunoPrismaRepository.js";
 
 const monitorService = new MonitorService(new MonitorPrismaRepository, new AlunoPrismaRepository);
 

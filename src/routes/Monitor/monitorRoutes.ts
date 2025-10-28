@@ -1,8 +1,8 @@
-import MonitorController from "../../controllers/Monitor/MonitorController";
-import { validateSchema } from "../../middlewares/validateSchemaMiddleware";
-import * as schema from "../../schemas/monitorSchema";
-import * as schemaAluno from "../../schemas/alunoSchema";
-import { authMiddleware } from "../../middlewares/authMiddleware";
+import MonitorController from "../../controllers/Monitor/MonitorController.js";
+import { validateSchema } from "../../middlewares/validateSchemaMiddleware.js";
+import * as schema from "../../schemas/monitorSchema.js";
+import * as schemaAluno from "../../schemas/alunoSchema.js";
+import { authMiddleware } from "../../middlewares/authMiddleware.js";
 
 import { Router } from "express";
 

@@ -1,5 +1,5 @@
 import { Aluno } from "@prisma/client";
-import type AlunoPrismaRepository from "../../repositories/Prisma/AlunoPrismaRepository";
+import type AlunoPrismaRepository from "../../repositories/Prisma/AlunoPrismaRepository.js";
 import bcrypt from  "bcrypt";
 
 

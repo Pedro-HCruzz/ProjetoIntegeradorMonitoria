@@ -1,8 +1,8 @@
-import DisciplinaController from "../../controllers/Disciplina/DisiciplinaController";
+import DisciplinaController from "../../controllers/Disciplina/DisiciplinaController.js";
 import { Router } from "express";
-import { validateSchema } from "../../middlewares/validateSchemaMiddleware";
-import * as schema from "../../schemas/disciplinaSchema";
-import { authMiddleware } from "../../middlewares/authMiddleware";
+import { validateSchema } from "../../middlewares/validateSchemaMiddleware.js";
+import * as schema from "../../schemas/disciplinaSchema.js";
+import { authMiddleware } from "../../middlewares/authMiddleware.js";
 
 
 const router =  Router();

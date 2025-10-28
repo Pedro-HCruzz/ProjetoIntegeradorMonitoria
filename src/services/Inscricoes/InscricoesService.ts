@@ -1,5 +1,5 @@
 import { Inscricao } from "@prisma/client";
-import type InscricoesPrismaRepository from "../../repositories/Prisma/InscricoesPrismaRepository";
+import type InscricoesPrismaRepository from "../../repositories/Prisma/InscricoesPrismaRepository.js";
 
 
 class InscricaosService{

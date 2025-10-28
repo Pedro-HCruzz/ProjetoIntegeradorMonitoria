@@ -1,12 +1,12 @@
 
 import { Router } from "express";
-import alunoRoutes from "../routes/Aluno/alunoRoutes"
-import loginRoutes from "../routes/Paginas/loginRoutes"
-import homeRoutes from "../routes/Paginas/homeRoutes";
-import monitorRoutes from "../routes/Monitor/monitorRoutes"
-import monitoriaRoutes from "../routes/Monitoria/monitoriaRoutes"
-import disciplinaRoutes from "../routes/Disciplina/disciplinaRoutes"
-import inscriacaoRoutes from "../routes/Inscricao/inscricaoRoutes"
+import alunoRoutes from "../routes/Aluno/alunoRoutes.js"
+import loginRoutes from "../routes/Paginas/loginRoutes.js"
+import homeRoutes from "../routes/Paginas/homeRoutes.js";
+import monitorRoutes from "../routes/Monitor/monitorRoutes.js"
+import monitoriaRoutes from "../routes/Monitoria/monitoriaRoutes.js"
+import disciplinaRoutes from "../routes/Disciplina/disciplinaRoutes.js"
+import inscriacaoRoutes from "../routes/Inscricao/inscricaoRoutes.js"
 
 const router = Router();
 

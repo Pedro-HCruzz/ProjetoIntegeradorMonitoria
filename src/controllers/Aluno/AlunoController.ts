@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import AlunosService from "../../services/Aluno/AlunoService";
-import AlunoPrismaRepository from "../../repositories/Prisma/AlunoPrismaRepository";
+import AlunosService from "../../services/Aluno/AlunoService.js";
+import AlunoPrismaRepository from "../../repositories/Prisma/AlunoPrismaRepository.js";
 
 const alunoService = new AlunosService(new AlunoPrismaRepository());
 

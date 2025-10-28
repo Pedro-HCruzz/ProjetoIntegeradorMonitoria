@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import InscricoesService from "../../services/Inscricoes/InscricoesService";
-import InscricoesPrismaRepository from "../../repositories/Prisma/InscricoesPrismaRepository";
-import { AuthRequest } from "../../middlewares/authMiddleware";
+import InscricoesService from "../../services/Inscricoes/InscricoesService.js";
+import InscricoesPrismaRepository from "../../repositories/Prisma/InscricoesPrismaRepository.js";
+import { AuthRequest } from "../../middlewares/authMiddleware.js";
 
 const inscricoesService = new InscricoesService(new InscricoesPrismaRepository());
 

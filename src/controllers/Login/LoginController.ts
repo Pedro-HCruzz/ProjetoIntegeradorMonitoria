@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import AuthService from "../../services/Auth/AuthService";
-import AlunoPrismaRepository from "../../repositories/Prisma/AlunoPrismaRepository";
-import { generateJWT } from "../../utils/jwt/jwt";
+import AuthService from "../../services/Auth/AuthService.js";
+import AlunoPrismaRepository from "../../repositories/Prisma/AlunoPrismaRepository.js";
+import { generateJWT } from "../../utils/jwt/jwt.js";
 
 
 const authService = new AuthService(new AlunoPrismaRepository());

@@ -1,8 +1,8 @@
-import MonitorPrismaRepository from "../../repositories/Prisma/MonitorPrismaRepository";
-import AlunoPrismaRepository from "../../repositories/Prisma/AlunoPrismaRepository";
+import MonitorPrismaRepository from "../../repositories/Prisma/MonitorPrismaRepository.js";
+import AlunoPrismaRepository from "../../repositories/Prisma/AlunoPrismaRepository.js";
 import { Monitor } from "@prisma/client";
 import { Aluno } from "@prisma/client";
-import { compareSync } from "bcrypt";
+
 
 
 class MonitorService {

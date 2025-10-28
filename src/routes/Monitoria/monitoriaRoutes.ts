@@ -1,7 +1,7 @@
-import MonitoriaController from "../../controllers/Monitoria/MonitoriaController";
-import { validateSchema } from "../../middlewares/validateSchemaMiddleware";
-import * as schema from "../../schemas/monitoriaSchema";
-import { authMiddleware } from "../../middlewares/authMiddleware";
+import MonitoriaController from "../../controllers/Monitoria/MonitoriaController.js";
+import { validateSchema } from "../../middlewares/validateSchemaMiddleware.js";
+import * as schema from "../../schemas/monitoriaSchema.js";
+import { authMiddleware } from "../../middlewares/authMiddleware.js";
 
 import { Router } from "express";
 

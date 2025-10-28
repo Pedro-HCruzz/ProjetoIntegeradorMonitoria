@@ -1,9 +1,9 @@
-import InscricoesController from "../../controllers/Inscricoes/InscricoesController";
+import InscricoesController from "../../controllers/Inscricoes/InscricoesController.js";
 import { Router } from "express";
 
-import { validateSchema } from "../../middlewares/validateSchemaMiddleware";
-import * as schema from "../../schemas/inscricoesSchema";
-import { authMiddleware, AuthRequest } from "../../middlewares/authMiddleware";
+import { validateSchema } from "../../middlewares/validateSchemaMiddleware.js";
+import * as schema from "../../schemas/inscricoesSchema.js";
+import { authMiddleware, AuthRequest } from "../../middlewares/authMiddleware.js";
 
 
 const router =  Router();

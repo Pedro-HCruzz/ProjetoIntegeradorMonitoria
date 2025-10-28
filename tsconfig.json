@@ -1,9 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "commonjs",          // <-- ATUALIZE AQUI
-    "moduleResolution": "node", 
-    "ignoreDeprecations": "6.0",// <-- E AQUI
+    "module": "nodenext",          // <-- ATUALIZE AQUI
     "rootDir": "./src",
     "outDir": "dist",
     "esModuleInterop": true,

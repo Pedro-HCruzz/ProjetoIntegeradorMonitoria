@@ -1,8 +1,8 @@
 // src/routes/alunoRoutes.ts
 import { Router } from "express";
-import AlunoController from "../../controllers/Aluno/AlunoController";
-import { validateSchema } from "../../middlewares/validateSchemaMiddleware";
-import { authMiddleware, AuthRequest } from "../../middlewares/authMiddleware";
+import AlunoController from "../../controllers/Aluno/AlunoController.js";
+import { validateSchema } from "../../middlewares/validateSchemaMiddleware.js";
+import { authMiddleware, AuthRequest } from "../../middlewares/authMiddleware.js";
 
 import * as schema from "../../schemas/alunoSchema";
 

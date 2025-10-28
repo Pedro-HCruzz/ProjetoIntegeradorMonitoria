@@ -1,5 +1,5 @@
 import { Aluno } from "@prisma/client"
-import AlunoPrismaRepository from "../../repositories/Prisma/AlunoPrismaRepository"
+import AlunoPrismaRepository from "../../repositories/Prisma/AlunoPrismaRepository.js"
 import bcrypt from "bcrypt"
 
 class AuthService{

@@ -1,4 +1,4 @@
-import MonitoriaPrismaRepository from "../../repositories/Prisma/MonitoriaPrismaRepository";
+import MonitoriaPrismaRepository from "../../repositories/Prisma/MonitoriaPrismaRepository.js";
 import { Monitoria } from "@prisma/client";
 
 

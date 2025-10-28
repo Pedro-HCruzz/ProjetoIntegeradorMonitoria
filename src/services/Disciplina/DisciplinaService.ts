@@ -1,4 +1,4 @@
-import DisciplinaPrismaRespository from "../../repositories/Prisma/DisciplinaPrismaRepository";
+import DisciplinaPrismaRespository from "../../repositories/Prisma/DisciplinaPrismaRepository.js";
 import { Disciplina } from "@prisma/client";
 
 
