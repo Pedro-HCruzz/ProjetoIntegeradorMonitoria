@@ -2,7 +2,7 @@
   "name": "monitoria",
   "version": "1.0.0",
   "main": "server.ts",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
   "prisma:generate": "npx prisma generate",
   "prisma:migrate": "prisma migrate deploy",

@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "NodeNext",          // <-- ATUALIZE AQUI
-    "moduleResolution": "NodeNext", // <-- E AQUI
+    "module": "commonjs",          // <-- ATUALIZE AQUI
+    "moduleResolution": "node", 
+    "ignoreDeprecations": "6.0",// <-- E AQUI
     "rootDir": "./src",
     "outDir": "dist",
     "esModuleInterop": true,
