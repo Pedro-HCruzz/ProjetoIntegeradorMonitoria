@@ -1,0 +1,206 @@
+/* Reset básico e fontes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+        Arial, sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+    background-color: #f0f2f5;
+}
+
+/* Estilo do Container principal que divide a tela */
+.containerPagina {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Estilo do Painel da Esquerda (Logo) */
+.painelLogo {
+    flex: 1;
+    background-color: #024059;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+}
+
+.painelLogo img {
+    width: 700px;
+    margin-bottom: 20px;
+}
+
+/* Estilo do Painel da Direita (Formulário) */
+#dadosLogin,
+#dadosCadastro {
+    flex: 1; /* Ocupa 50% */
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    height: 100vh; /* Garante que ocupe a altura toda */
+    text-align: left; /* Alinha o texto do form à esquerda */
+}
+
+/* Estilo do Formulário */
+#loginForm,
+#cadastroForm {
+    width: 100%;
+    max-width: 400px; 
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Estilo dos Títulos */
+#loginForm h1,
+#cadastroForm h1 {
+    font-size: 2rem;
+    color: #024059;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+/* Estilo dos Inputs */
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'] {
+    width: 100%;
+    padding: 15px 15px 15px 20px;
+    border: none;
+    background-color: #e4e4e4;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: box-shadow 0.2s ease;
+}
+
+/* borda dos Inputs */
+input[type='text']:focus,
+input[type='email']:focus,
+input[type='password']:focus,
+input[type='number']:focus {
+    box-shadow: 0 0 0 2px #024059;
+}
+
+/* Remover contador do campo Matrícula */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type='number'] {
+    appearance: textfield;
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+/* Estilo do Botão */
+button[type='submit'] {
+    background-color: #024059;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button[type='submit']:hover {
+    background-color: #035a7d;
+}
+
+/* Links (Esqueceu a senha? / Não possui conta?) */
+/* O <p> com o checkbox e o link "Esqueceu a senha?" */
+#loginForm p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    color: #024059;
+}
+
+#loginForm p label {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    gap: 5px;
+}
+
+#loginForm a,
+#dadosLogin > p > a, /* Link "Cadastre-se!" */
+#dadosCadastro > p > a { /* Link "Faça seu login!" */
+    color: #024059;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* "Não possui conta?" / "Já tem conta?" */
+#dadosLogin > p,
+#dadosCadastro > p {
+    text-align: center;
+    margin-top: 20px;
+    color: #024059;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Responsividade */
+@media (max-width: 800px) {
+
+    /* Ajuste da Página */
+    html, body {
+        height: 100%;
+        overflow: hidden; 
+    }
+
+    .containerPagina {
+        flex-direction: column; 
+        height: 100vh; 
+    }
+
+    /* Painel da Logo */
+    .painelLogo {
+        flex: none;
+        height: 40vh; 
+        padding: 20px; 
+        flex-direction: column;
+        justify-content: center; 
+        align-items: center;
+        width: 100%;
+        background-color: #024059;
+    }
+
+    /* Ajusta o tamanho da logo */
+    .painelLogo img {
+        width: 400px; 
+        height: auto;
+        margin-bottom: 0;
+    }
+
+    /* Painel do formulário */
+    #dadosLogin, #dadosCadastro {
+        flex: none; 
+        background-color: #ffffff; 
+        height: 60vh;
+        width: 100%;
+        justify-content: center; 
+        padding: 20px;
+        overflow-y: auto; 
+    }
+}

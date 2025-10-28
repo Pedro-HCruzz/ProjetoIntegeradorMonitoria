@@ -4,7 +4,33 @@
   box-sizing: border-box;
 }
 
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex; /* Transforma o <nav> em um container flexível */
+  justify-content: space-between; /* Magicamente faz o que você quer! */
+  align-items: center; /* (Opcional) Alinha os 3 itens verticalmente no centro */
+  width: 100%; /* Garante que o <nav> ocupe toda a largura */
+  background-color: #003C5A;
+  
+}
+
+.logo img {
+    display: inline-block;
+    max-width: 80px;
+    height: auto;
+}
+
+.icone img {
+    display: inline-block;
+    max-width: 50px;
+    height: auto;
+    margin: 0px 15px;
+}
+
 body {
+  margin-top: 70px;
   font-family: 'Inter', sans-serif;
   background: #f7f7f7;
 }
@@ -28,7 +54,7 @@ li {
 
 .boasvindas h1 {
   font-size: 2.0rem;
-  color: #222;
+  color: #024059;
   font-weight: 600;
 }
 
@@ -89,16 +115,6 @@ li {
   }
 }
 
-
-
-/* ícone de perfil */
-.icone-perfil {
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
 .icone-perfil:hover {
   transform: scale(1.05);
 }
@@ -124,23 +140,12 @@ li {
   }
 }
 
-.icone-perfil {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%; /* deixa o ícone redondo */
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.icone-perfil:hover {
-  transform: scale(1.1); /* leve zoom ao passar o mouse */
-}
-
 h2#titulomonitorias{
   font-size: 30px;
   font-weight: bold;
   text-align: center;
   margin-bottom: 30px;
+  color: #024059;
 
 }
 .sectionmonitorias {
@@ -149,6 +154,7 @@ h2#titulomonitorias{
   align-items: center;
   flex-direction: column; 
   padding: 40px 0;
+  color: #024059;
 }
 
 
@@ -170,7 +176,6 @@ h2#titulomonitorias{
   list-style: none;
   padding: 0;
   margin: 0;
-
 }
 
 
@@ -182,6 +187,7 @@ h2#titulomonitorias{
   margin-bottom: 15px;
   border-radius: 8px;
   width: 300px;
+  height: 160px;
   transition: 0.3s;
 }
 .cardmonitoria:hover{
@@ -291,4 +297,9 @@ h2#titulomonitorias{
   .popup-content h2 {
     font-size: 1.3rem;
   }
+}
+
+.informacoesmonitoria{
+  width: 270px;
+  height: 80px;
 }

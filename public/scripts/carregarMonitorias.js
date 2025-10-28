@@ -59,14 +59,14 @@ async function carregarMonitorias() {
             li.classList.add("cardmonitoria");
 
             li.innerHTML = `
-                <div class="informacoesmonitoria">
+            <div class="informacoesmonitoria">
                 <div class="nomemonitoria">${m.nome_monitoria}</div>
                 <div class="disciplinamonitoria">${m.disciplina.nome}</div>
                 <div class="datamonitoria">
-                    ${new Date(m.data).toLocaleDateString()} - 
-                    ${new Date(m.hora_inicio).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}
+                        ${new Date(m.data).toLocaleDateString()} - 
+                        ${new Date(m.hora_inicio).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}
                 </div>
-                </div>
+            </div>
             `;
 
             // lógica para o popup ao clicar nas monitorias e mostrar informações 
