@@ -1,6 +1,7 @@
 import dotenv from "dotenv"
 import path from "path";
-import routes from "./routes";
+import { fileURLToPath } from "url"; // adicionando por causa do ES Module
+import routes from "./routes/index.js";
 import express from "express";
 import cors from "cors";
 
@@ -14,6 +15,12 @@ server.use(cors({
 }));
 
 // server.use(express.static("public")); //arquivos html
+
+/*ADICIONANDO AS VARIÁVEIS PARA RODAR DEVIDO A MUDANÇA PARA O ESM**/
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+
 server.use(express.static(path.join(__dirname, "..", "public")));
 server.use(express.json());
 server.use(express.urlencoded({extended : true}))

@@ -1,5 +1,5 @@
 import  jwt, { SignOptions }  from "jsonwebtoken"
-import AlunoPrismaRepository from "../../repositories/Prisma/AlunoPrismaRepository";
+import AlunoPrismaRepository from "../../repositories/Prisma/AlunoPrismaRepository.js";
 
 import "dotenv/config"; 
 

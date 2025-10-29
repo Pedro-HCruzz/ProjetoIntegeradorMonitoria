@@ -4,7 +4,7 @@ import AlunoController from "../../controllers/Aluno/AlunoController.js";
 import { validateSchema } from "../../middlewares/validateSchemaMiddleware.js";
 import { authMiddleware, AuthRequest } from "../../middlewares/authMiddleware.js";
 
-import * as schema from "../../schemas/alunoSchema";
+import * as schema from "../../schemas/alunoSchema.js";
 
 const alunoController = new AlunoController();
 const router = Router();

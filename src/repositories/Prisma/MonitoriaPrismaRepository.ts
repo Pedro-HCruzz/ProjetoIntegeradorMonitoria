@@ -1,4 +1,4 @@
-import {prisma} from "../Prisma/client";
+import {prisma} from "../Prisma/client.js";
 import { Monitoria } from "@prisma/client";
 
 

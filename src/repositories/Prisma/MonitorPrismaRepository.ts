@@ -1,4 +1,4 @@
-import {prisma} from "../Prisma/client";
+import {prisma} from "../Prisma/client.js";
 import { Monitor } from "@prisma/client";
 
 class MonitorPrismaRepository{
