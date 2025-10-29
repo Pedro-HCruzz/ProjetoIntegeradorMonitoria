@@ -16,9 +16,8 @@ class AuthService{
              // verifica se a senha está certa
             throw new Error ("CREDENCIAIS_INVALIDAS");
         }
-
+        
         return user;
-
     }
 
     async existeUser(email : string) : Promise<Aluno>{

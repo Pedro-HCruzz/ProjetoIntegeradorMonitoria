@@ -1,3 +1,4 @@
+import path from "path";
 
 import { Router } from "express";
 import alunoRoutes from "../routes/Aluno/alunoRoutes.js"
@@ -11,14 +12,15 @@ import inscriacaoRoutes from "../routes/Inscricao/inscricaoRoutes.js"
 const router = Router();
 
 router.get("/", (req, res) => {
-  res.redirect("/login"); 
-}); // ao carregar abrir login direto
+  res.sendFile(path.join(__dirname, "../public/login.html"));
+});
 
 router.use("/aluno", alunoRoutes);
 router.use("/monitor" , monitorRoutes )
 router.use("/disciplina" , disciplinaRoutes )
 router.use("/monitoria" , monitoriaRoutes )
 router.use("/inscricoes" , inscriacaoRoutes)
+
 router.use("/login", loginRoutes);
 router.use("/home" , homeRoutes )
 

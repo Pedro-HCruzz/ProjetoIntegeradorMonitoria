@@ -14,7 +14,7 @@ server.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE"]
 }));
 
-// server.use(express.static("public")); //arquivos html
+server.use(express.static("public")); //arquivos html
 
 /*ADICIONANDO AS VARIÁVEIS PARA RODAR DEVIDO A MUDANÇA PARA O ESM**/
 const __filename = fileURLToPath(import.meta.url);
