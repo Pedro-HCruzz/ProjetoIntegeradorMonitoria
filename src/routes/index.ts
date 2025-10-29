@@ -11,6 +11,8 @@ import inscriacaoRoutes from "../routes/Inscricao/inscricaoRoutes.js"
 
 const router = Router();
 
+const __dirname = path.dirname(__filename);
+
 router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/login.html"));
 });
