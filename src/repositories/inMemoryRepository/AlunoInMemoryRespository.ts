@@ -1,5 +1,5 @@
 
-import type { Alunos } from "../../models/Alunos";
+import type { Alunos } from "../../models/Alunos.js";
 import { v4 as uuidv4 } from 'uuid'
 
 
