@@ -10,6 +10,10 @@ import inscriacaoRoutes from "../routes/Inscricao/inscricaoRoutes.js"
 
 const router = Router();
 
+router.get("/", (req, res) => {
+  res.send("Servidor rodando!"); // ou redirecionar para /home
+});
+
 router.use("/aluno", alunoRoutes);
 router.use("/monitor" , monitorRoutes )
 router.use("/disciplina" , disciplinaRoutes )

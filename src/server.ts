@@ -10,7 +10,7 @@ dotenv.config();
 const server = express();
 
 server.use(cors({
-  origin: "https://projetointegeradormonitoria-1.onrender.com",
+  origin: "https://projetointegeradormonitoria.onrender.com",
   methods: ["GET", "POST", "PUT", "DELETE"]
 }));
 
@@ -26,7 +26,10 @@ server.use(express.json());
 server.use(express.urlencoded({extended : true}))
 server.use(routes);
 
+
+
 const PORT = Number(process.env.PORT) || 3000;
+
 server.listen(PORT, () => {
     console.log(`Server rodando na porta ${PORT}`);
 });
