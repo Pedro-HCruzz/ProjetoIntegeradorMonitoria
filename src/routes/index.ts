@@ -12,7 +12,7 @@ const router = Router();
 
 router.get("/", (req, res) => {
   res.redirect("/login"); 
-});
+}); // ao carregar abrir login direto
 
 router.use("/aluno", alunoRoutes);
 router.use("/monitor" , monitorRoutes )
