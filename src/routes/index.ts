@@ -11,7 +11,7 @@ import inscriacaoRoutes from "../routes/Inscricao/inscricaoRoutes.js"
 const router = Router();
 
 router.get("/", (req, res) => {
-  res.send("Servidor rodando!"); // ou redirecionar para /home
+  res.redirect("/login"); 
 });
 
 router.use("/aluno", alunoRoutes);
