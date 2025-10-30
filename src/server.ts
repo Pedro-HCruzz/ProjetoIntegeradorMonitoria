@@ -9,10 +9,18 @@ dotenv.config();
 
 const server = express();
 
-server.use(cors({
+/*server.use(cors({
   origin: "https://projetointegeradormonitoria.onrender.com",
   methods: ["GET", "POST", "PUT", "DELETE"]
+}));*/
+
+
+
+server.use(cors({
+  origin: ["https://projetointegeradormonitoria.onrender.com", "http://localhost:3000"],
+  methods: ["GET", "POST", "PUT", "DELETE"]
 }));
+
 
 
 server.use(express.json());

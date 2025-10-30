@@ -35,7 +35,6 @@ class InscricoesController{
     async create(Req : Request, Res : Response){
         try {
             const dados = Req.body;
-            console.log(dados)
             const dadosInscricoes = await inscricoesService.create(dados)
             return Res.status(201).json(dadosInscricoes);
             
