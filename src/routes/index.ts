@@ -11,6 +11,12 @@ import inscriacaoRoutes from "../routes/Inscricao/inscricaoRoutes.js"
 
 const router = Router();
 
+
+router.get("/", (req: Request, res: Response) => {
+  res.redirect("/login");
+});
+
+
 router.use("/aluno", alunoRoutes);
 router.use("/monitor" , monitorRoutes )
 router.use("/disciplina" , disciplinaRoutes )

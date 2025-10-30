@@ -17,14 +17,8 @@ server.use(cors({
 
 server.use(express.json());
 server.use(express.urlencoded({extended : true}))
-server.use(routes);
-
-/*ADICIONANDO AS VARIÁVEIS PARA RODAR DEVIDO A MUDANÇA PARA O ESM**/
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 server.use(express.static(path.join(process.cwd(), "public")));
-
+server.use(routes);
 
 
 const PORT = Number(process.env.PORT) || 3000;
