@@ -14,17 +14,16 @@ server.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE"]
 }));
 
-server.use(express.static("public")); //arquivos html
+
+server.use(express.json());
+server.use(express.urlencoded({extended : true}))
+server.use(routes);
 
 /*ADICIONANDO AS VARIÁVEIS PARA RODAR DEVIDO A MUDANÇA PARA O ESM**/
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
-server.use(express.static(path.join(__dirname, "..", "public")));
-server.use(express.json());
-server.use(express.urlencoded({extended : true}))
-server.use(routes);
+server.use(express.static(path.join(process.cwd(), "public")));
 
 
 

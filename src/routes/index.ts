@@ -1,5 +1,4 @@
-import path from "path";
-import { fileURLToPath } from "url"; // adicionando por causa do ES Module
+import { Response, Request } from "express";
 
 import { Router } from "express";
 import alunoRoutes from "../routes/Aluno/alunoRoutes.js"
@@ -11,12 +10,6 @@ import disciplinaRoutes from "../routes/Disciplina/disciplinaRoutes.js"
 import inscriacaoRoutes from "../routes/Inscricao/inscricaoRoutes.js"
 
 const router = Router();
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-router.get("/", (req, res) => {
-  res.sendFile("login.html", { root: path.join(__dirname, "..", "public") });
-});
 
 router.use("/aluno", alunoRoutes);
 router.use("/monitor" , monitorRoutes )
