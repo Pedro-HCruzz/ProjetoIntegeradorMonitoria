@@ -18,7 +18,7 @@ form.addEventListener("submit", async (e) => {
 
         /*const API_URL = window.location.hostname === "localhost" ? "http://localhost:3000" : "https://projetointegeradormonitoria.onrender.com"; // verificando se está no render ou na nossa máquina*/
 
-        const res = await fetch('https://projetointegeradormonitoria.onrender.com/login', {
+        const res = await fetch('https://projetointegeradormonitoria.onrender.com/login/', {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data)
