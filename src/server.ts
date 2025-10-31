@@ -9,17 +9,6 @@ import cors from "cors";
 dotenv.config();
 const server = express();
 
-import {prisma} from "../src/repositories/Prisma/client.js";
-
-(async () => {
-  try {
-    console.log("DATABASE_URL =", process.env.DATABASE_URL);
-    const result = await prisma.$queryRaw`SELECT NOW()`;
-    console.log("Conexão com banco OK:", result);
-  } catch (err) {
-    console.error("Erro conexão banco:", err);
-  }
-})();
 /*server.use(cors({
   origin: "https://projetointegeradormonitoria.onrender.com",
   methods: ["GET", "POST", "PUT", "DELETE"]
