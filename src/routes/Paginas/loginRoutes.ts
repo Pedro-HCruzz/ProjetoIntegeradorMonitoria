@@ -7,8 +7,8 @@ const router = Router();
 
 // servir a página para não dar err no render
 router.get("/", (req: Request, res: Response) => {
-    // res.sendFile("login.html", {root : "public"}) // olhar use no server
-    res.sendFile(path.join(process.cwd(), "public", "login.html"));
+    res.sendFile("login.html", {root : "public"}) // olhar use no server
+    // res.sendFile(path.join(process.cwd(), "public", "login.html"));
 });
 
 
