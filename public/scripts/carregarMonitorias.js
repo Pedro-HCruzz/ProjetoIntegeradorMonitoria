@@ -7,14 +7,14 @@ async function carregarMonitorias() {
     try {
         // pegar todas as monitorias do backend
 
-        const response = await fetch("http://localhost:3000/monitoria" , { 
+        const response = await fetch("/monitoria" , { 
             headers : {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             }
         }) 
 
         // pegar inscricoes do aluno em alguma monitoria
-        const respInscricao = await fetch("http://localhost:3000/inscricoes/aluno", { 
+        const respInscricao = await fetch("/aluno", { 
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             }
@@ -132,7 +132,7 @@ async function carregarMonitorias() {
                     return;
                 }
                 try {
-                    const responseFazerInscricao = await fetch(`http://localhost:3000/inscricoes`, {
+                    const responseFazerInscricao = await fetch(`/inscricoes`, {
                         method : "POST",
                         headers : {
                             "Content-Type": "application/json",
@@ -173,7 +173,7 @@ async function carregarMonitorias() {
             const inscricaoId = botao.dataset.inscricaoId;
 
             try {
-                const responseCancelarInscricao = await fetch(`http://localhost:3000/inscricoes/${inscricaoId}` , { // fetch para a rota de deletar uma inscrição, pegando o id da inscrição e passando nos params da rota
+                const responseCancelarInscricao = await fetch(`/inscricoes/${inscricaoId}` , { // fetch para a rota de deletar uma inscrição, pegando o id da inscrição e passando nos params da rota
                     method : "DELETE",
                     headers : {
                         "Authorization" : `Bearer ${localStorage.getItem("token")}`
