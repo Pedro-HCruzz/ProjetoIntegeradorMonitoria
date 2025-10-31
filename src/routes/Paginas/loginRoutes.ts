@@ -1,4 +1,4 @@
-
+import path from "path";
 import { Router, Request, Response } from "express";
 import LoginController from "../../controllers/Login/LoginController.js";
 
@@ -7,7 +7,8 @@ const router = Router();
 
 // servir a página para não dar err no render
 router.get("/", (req: Request, res: Response) => {
-    res.sendFile("login.html", {root : "public"}) // olhar use no server
+    // res.sendFile("login.html", {root : "public"}) // olhar use no server
+    res.sendFile(path.join(process.cwd(), "public", "login.html"));
 });
 
 
