@@ -32,7 +32,7 @@ server.use(routes);
 const PORT = Number(process.env.PORT) || 3000;
 
 server.listen(PORT, () => {
-    console.log(`Server rodando na porta ${PORT}`);
+    console.log(`Serverr rodando na porta ${PORT}`);
 });
 
 // meu server.ts está responsável por: usar cors, instanciar o servidor e usar as rotas do routes
