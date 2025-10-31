@@ -3,10 +3,11 @@ import { getAlunoId } from "./carregarNomeUsuario.js";
 
 async function carregarMonitorias() {
     const lista = document.getElementById("listamonitorias")
+    const idAluno = getAlunoId();
 
     try {
+        
         // pegar todas as monitorias do backend
-
         const response = await fetch("/monitoria" , { 
             headers : {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
@@ -14,7 +15,7 @@ async function carregarMonitorias() {
         }) 
 
         // pegar inscricoes do aluno em alguma monitoria
-        const respInscricao = await fetch("/aluno", { 
+        const respInscricao = await fetch(`/inscricoes/aluno`, { 
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             }

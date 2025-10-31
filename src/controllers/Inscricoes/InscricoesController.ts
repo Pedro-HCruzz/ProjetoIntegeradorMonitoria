@@ -19,8 +19,9 @@ class InscricoesController{
 
     async getInscricaoAluno(Req : AuthRequest, Res : Response) {
         try {
+
             if (Req.user?.id == undefined){
-                return Res.status(500).json({error : "Usuário nao identificado no token."})
+                return Res.status(500).json({error : "USUARIO_SEM_TOKNEN"})
             }
 
             const alunoId = Req.user?.id;
