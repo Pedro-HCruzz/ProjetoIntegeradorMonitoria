@@ -5,6 +5,18 @@ import routes from "./routes/index.js";
 import express from "express";
 import cors from "cors";
 
+import {prisma} from "../src/repositories/Prisma/client.js";
+
+(async () => {
+  try {
+    console.log("DATABASE_URL =", process.env.DATABASE_URL);
+    const result = await prisma.$queryRaw`SELECT NOW()`;
+    console.log("Conexão com banco OK:", result);
+  } catch (err) {
+    console.error("Erro conexão banco:", err);
+  }
+})();
+
 dotenv.config();
 
 const server = express();
