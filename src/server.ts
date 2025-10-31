@@ -1,9 +1,13 @@
 import dotenv from "dotenv"
 import path from "path";
-import { fileURLToPath } from "url"; // adicionando por causa do ES Module
 import routes from "./routes/index.js";
 import express from "express";
 import cors from "cors";
+
+
+
+dotenv.config();
+const server = express();
 
 import {prisma} from "../src/repositories/Prisma/client.js";
 
@@ -16,11 +20,6 @@ import {prisma} from "../src/repositories/Prisma/client.js";
     console.error("Erro conexão banco:", err);
   }
 })();
-
-dotenv.config();
-
-const server = express();
-
 /*server.use(cors({
   origin: "https://projetointegeradormonitoria.onrender.com",
   methods: ["GET", "POST", "PUT", "DELETE"]
