@@ -33,7 +33,7 @@ form.addEventListener("submit", async (e) => {
             } else if (result.erro === "DADOS_INCOMPLETOS") {
                 mensagem.textContent = "Preencha todos os campos corretamente!";
             } else {
-                mensagem.textContent = "Erro ao cadastrar!";
+                mensagem.textContent = "Erro ao cadastrar! Verifique a matrícula!";
             }
             mensagem.style.color = "red";
         } else {
