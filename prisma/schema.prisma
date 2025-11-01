@@ -11,6 +11,7 @@ datasource db {
 // -------------------------
 // Tabela Aluno
 // -------------------------
+
 model Aluno {
   id         String      @id @default(dbgenerated("gen_random_uuid()"))
   nome       String

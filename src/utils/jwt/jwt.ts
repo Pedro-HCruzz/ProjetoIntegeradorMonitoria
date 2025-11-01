@@ -3,15 +3,11 @@ import AlunoPrismaRepository from "../../repositories/Prisma/AlunoPrismaReposito
 
 import "dotenv/config"; 
 
-
-const alunoPrismaRepository = new AlunoPrismaRepository();
-
 export const generateJWT = async (aluno : {id : string, email : string, nome : string}, expiresIn : string): Promise <string> =>{
     
     const secret : string = process.env.JWT_SECRET || "default";
     const expiraEm = process.env.JWT_EXPIRES_IN;
 
-    // const alunoBanco = await alunoPrismaRepository.findByEmail(aluno.email)
 
     const payloadDados = {
         id : aluno.id,
@@ -26,6 +22,7 @@ export const generateJWT = async (aluno : {id : string, email : string, nome : s
     }
 
     const token = jwt.sign(payloadDados, secret, option)
+
 
     return token;
 };

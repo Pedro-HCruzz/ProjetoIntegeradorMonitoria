@@ -13,7 +13,7 @@ const router = Router();
 
 
 router.get("/", (req: Request, res: Response) => {
-  res.redirect("/login");
+  res.redirect("/login.html");
 }); // funciona apenas localmente
 
 

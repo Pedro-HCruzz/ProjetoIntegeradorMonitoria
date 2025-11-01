@@ -18,7 +18,6 @@ class AlunoController{
     }
     async create(Req : Request, Res : Response){
         try {
-
             const dados = Req.body;
             const dadosAlunos = await alunoService.create(dados)
 

@@ -11,7 +11,12 @@ const router = Router();
 
 router.get("/", authMiddleware,  alunoController.getAll);
 router.get("/:id", authMiddleware,  validateSchema(schema.alunoGetByIdSchema, "params"), alunoController.getById);
+
+
 router.post("/",  validateSchema(schema.alunoCreateSchema) , alunoController.create);
+
+
+
 router.put("/:id", authMiddleware,  validateSchema(schema.alunoUpdateIdSchema, "params"), validateSchema(schema.alunoUpdateSchema, "body") , alunoController.update);
 router.delete("/:id", authMiddleware,  validateSchema(schema.alunoDeleteSchema, "params"), alunoController.delete);
 
