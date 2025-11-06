@@ -18,7 +18,6 @@ class MonitoriaController{
     async create(req: Request, res: Response) {
         try {
             const dados = req.body;
-            console.log(dados)
             const monitoriaCriada = await monitoriaService.create(dados);
 
             return res.status(201).json(monitoriaCriada);

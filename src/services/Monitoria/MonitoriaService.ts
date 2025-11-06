@@ -12,9 +12,23 @@ class MonitoriaService {
     }
 
     async create(dados : Monitoria) : Promise<Monitoria>{
-            const dadosMonitoria = await this._monitoriaRepository.create(dados)
-            return dadosMonitoria;
+
+        const horaInicio = new Date(`${dados.data}T${dados.hora_inicio}:00`); // adiciono a data, o T para complementar o padrao aceito pelo Prisma e o 00 também para se adequar ao padrão
+        const horaFim = new Date(`${dados.data}T${dados.hora_fim}:00`);
+        
+        const dadosAlterados = {
+            ...dados,
+            data : new Date(),
+            hora_inicio : horaInicio,   
+            hora_fim : horaFim
         }
+
+        console.log(dadosAlterados)
+
+        const dadosMonitoria = await this._monitoriaRepository.create(dadosAlterados)
+
+        return dadosMonitoria;
+    }
     async getById(id : string) : Promise <Monitoria>{
         const monitoriaDados = await this._monitoriaRepository.getById(id)
 

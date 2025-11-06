@@ -1,5 +1,6 @@
 import {prisma} from "../Prisma/client.js";
 import { Monitor } from "@prisma/client";
+import { Perfil } from "@prisma/client";
 
 class MonitorPrismaRepository{
     async getAll(): Promise <Monitor[]>{
@@ -20,13 +21,22 @@ class MonitorPrismaRepository{
 
         return monitorDados;
     }
-    async create(data : Monitor) : Promise <Monitor>{
-        
-        const novoMonitor = await prisma.monitor.create({
-            data
-        })
+    async createAndUpdate(id : string) : Promise<Monitor>{
+        const monitor = await prisma.$transaction(async (tx) => {
+            const Novomonitor = await tx.monitor.create({ // Crio monitor
+                data : {id}
+            })
 
-        return novoMonitor;
+            await tx.aluno.update({ // atualizo o Aluno
+                where : {
+                    id : id
+                }, 
+                data : {perfil : Perfil.MONITOR}
+            })
+
+            return Novomonitor;
+        })
+        return monitor
     }
     async update(id : string, data : Monitor) : Promise <Monitor | null>{
         const monitorAtualizado = await prisma.monitor.update({

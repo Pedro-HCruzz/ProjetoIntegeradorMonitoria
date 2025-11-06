@@ -28,9 +28,9 @@ export const monitoriaUpdateSchema = yup.object({
 
 export const monitoriaCreateSchema = yup.object({
   nome_monitoria: yup.string().required(),
-  data: yup.date().required(),
-  hora_inicio: yup.date().required(),
-  hora_fim: yup.date().required(),
+  data: yup.string().matches(/^\d{4}-\d{2}-\d{2}$/).required(),
+  hora_inicio: yup.string().matches(/^\d{2}:\d{2}$/).required(),
+  hora_fim: yup.string().matches(/^\d{2}:\d{2}$/).required(),
   local: yup.string().optional(),
   monitorId: yup.string().required(),
   disciplinaId: yup.string().required(),

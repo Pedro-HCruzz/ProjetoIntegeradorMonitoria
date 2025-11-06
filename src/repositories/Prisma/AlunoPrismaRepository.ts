@@ -1,5 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import { Perfil, PrismaClient } from "@prisma/client";
 import { Aluno } from "@prisma/client";
+
 
 const prisma = new PrismaClient()
 
@@ -37,6 +38,8 @@ class AlunoPrismaRepository{
 
         return novoAluno;
     }
+
+
     async update(id : string, data : Aluno) : Promise <Aluno | null>{
         const alunoAtualizado = await prisma.aluno.update({
             data, where : {

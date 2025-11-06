@@ -1,7 +1,8 @@
 import MonitorPrismaRepository from "../../repositories/Prisma/MonitorPrismaRepository.js";
 import AlunoPrismaRepository from "../../repositories/Prisma/AlunoPrismaRepository.js";
 import { Monitor } from "@prisma/client";
-import { Aluno } from "@prisma/client";
+import { Aluno, Perfil } from "@prisma/client";
+import { string } from "yup";
 
 
 
@@ -15,9 +16,6 @@ class MonitorService {
     }
     async create(dados : {id :string}) : Promise<Monitor>{
         const existeAluno = await this._alunoRepository.getById(dados.id)
-         console.log(dados)
-         console.log(existeAluno)
-         // primeiro eu verifico se o id está cadastrado ou não
 
         if (!existeAluno){
             throw new Error ("ALUNO_INEXISTENTE")
@@ -29,8 +27,15 @@ class MonitorService {
             throw new Error ("MONITOR_EXISTE")
         }
 
-        const dadosMonitor = await this._monitorRepository.create(dados)
-        return dadosMonitor;
+        try {
+            await this._monitorRepository.createAndUpdate(dados.id) // criando monitor
+            existeAluno.perfil = Perfil.MONITOR //atribuindo o novo perfil
+
+        } catch (error) {
+           throw new Error("ERRO_AO_CADASTRAR_MONITOR")
+        }
+
+        return existeAluno;
     }
     async getById(id : string) : Promise <Monitor>{
         const monitorDados = await this._monitorRepository.getById(id)

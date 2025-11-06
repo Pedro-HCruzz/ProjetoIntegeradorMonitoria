@@ -10,6 +10,7 @@ export interface AuthRequest extends Request { // criando um type authrequest pa
     id: string;
     nome: string;
     email: string;
+    perfil: string;
   };
 }
 
@@ -31,21 +32,21 @@ export const authMiddleware = (req: AuthRequest, res: Response, next: NextFuncti
 
     const token = parts[1];
 
-    // permite passar a chave para o verify
+    // permite passar a chave para o verify, se não o bx apita erro
     if (!process.env.JWT_SECRET) {
       throw new Error("JWT_SECRET_NAO_DEFINIDO");
     }
 
-    // verifica o token
-    
+    // verifica o token olhando o payload
     const decoded = jwt.verify(token, process.env.JWT_SECRET) as JwtPayload;
 
     // adiciona dados do usuário no request
-
     req.user = { // usando a interface que definimos para poder pegar as informações e exibir pro front
       id: decoded.id as string,
       nome: decoded.nome as string,
-      email: decoded.email as string
+      email: decoded.email as string,
+      perfil: decoded.perfil as string
+      //adiciono o perfil aqui
     };
 
     next(); //

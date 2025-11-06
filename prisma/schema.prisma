@@ -7,11 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-// -------------------------
-// Tabela Aluno
-// -------------------------
-
+enum Perfil {
+  ALUNO
+  MONITOR
+  ADMIN
+}
 model Aluno {
   id         String      @id @default(dbgenerated("gen_random_uuid()"))
   nome       String
@@ -20,6 +20,7 @@ model Aluno {
   matricula  String      @unique
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
+  perfil     Perfil      @default(ALUNO)
 
   monitor    Monitor?
   inscricoes Inscricao[]
@@ -27,9 +28,7 @@ model Aluno {
   @@map("tb_aluno")
 }
 
-// -------------------------
-// Tabela Monitor
-// -------------------------
+
 model Monitor {
   id         String      @id
   aluno      Aluno       @relation(fields: [id], references: [id])
@@ -38,9 +37,7 @@ model Monitor {
   @@map("tb_monitor")
 }
 
-// -------------------------
-// Tabela Disciplina
-// -------------------------
+
 model Disciplina {
   id         String      @id @default(uuid()) 
   nome       String
@@ -50,9 +47,8 @@ model Disciplina {
   @@map("tb_disciplina")
 }
 
-// -------------------------
-// Tabela Monitoria
-// -------------------------
+
+
 model Monitoria {
   id             String      @id @default(dbgenerated("gen_random_uuid()"))
   nome_monitoria String
@@ -72,9 +68,7 @@ model Monitoria {
   @@map("tb_monitoria")
 }
 
-// -------------------------
-// Tabela Inscricao
-// -------------------------
+
 model Inscricao {
   id           String      @id @default(dbgenerated("gen_random_uuid()"))
   alunoId      String
