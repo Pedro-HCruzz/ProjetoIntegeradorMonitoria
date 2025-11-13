@@ -1,9 +1,8 @@
-import { getAlunoId } from "./carregarNomeUsuario.js";
+import { getAlunoId } from "../utils/getAlunoId.js";
 
 
 async function carregarMonitorias() {
     const lista = document.getElementById("listamonitorias")
-    const idAluno = getAlunoId();
 
     try {
         
@@ -64,7 +63,7 @@ async function carregarMonitorias() {
                 <div class="nomemonitoria">${m.nome_monitoria}</div>
                 <div class="disciplinamonitoria">${m.disciplina.nome}</div>
                 <div class="datamonitoria">
-                        ${new Date(m.data).toLocaleDateString()} - 
+                        ${new Date(m.hora_inicio).toLocaleDateString()} - 
                         ${new Date(m.hora_inicio).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}
                 </div>
             </div>
@@ -197,8 +196,10 @@ async function carregarMonitorias() {
             }
         });
 
+
+
+
         // Lógica para filtrar as monitorias
-        
         const buscarMonitoria = document.getElementById("buscaMonitoria");
         const filtrar = () => {
             const termo = buscarMonitoria.value.toLowerCase();

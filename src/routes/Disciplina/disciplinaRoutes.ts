@@ -3,11 +3,11 @@ import { Router } from "express";
 import { validateSchema } from "../../middlewares/validateSchemaMiddleware.js";
 import * as schema from "../../schemas/disciplinaSchema.js";
 import { authMiddleware } from "../../middlewares/authMiddleware.js";
-
+import { autorizado } from "../../middlewares/authorizationMiddleware.js";
 
 const router =  Router();
 
-router.get("/",  authMiddleware, DisciplinaController.getAll);
+router.get("/", authMiddleware, autorizado(["ADMIN", "MONITOR"]), DisciplinaController.getAll);
 router.get("/:id", authMiddleware, validateSchema(schema.disciplinaGetByIdSchema, "params"), DisciplinaController.getById);
 router.post("/", authMiddleware, validateSchema(schema.disciplinaCreateSchema) , DisciplinaController.create);
 router.put("/:id", authMiddleware, validateSchema(schema.disciplinaUpdateIdSchema, "params"), validateSchema(schema.disciplinaUpdateSchema, "body") , DisciplinaController.update);

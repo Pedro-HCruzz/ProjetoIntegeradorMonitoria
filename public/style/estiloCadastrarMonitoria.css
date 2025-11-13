@@ -1,0 +1,127 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+        Arial, sans-serif;
+    background-color: #f0f2f5 !important;
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0; 
+    box-sizing: border-box;
+}
+
+/* Estilo do Título H1 */
+h1 {
+    font-size: 2rem;
+    color: #024059;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+/* Estilo do Formulário*/
+#monitoriaForm {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
+}
+
+/*Estrutura de cada campo */
+.campoForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: left;
+}
+
+/*Estilo da Label*/
+.campoForm label {
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #024059;
+}
+
+/* Estilo unificado para TODOS os inputs e selects */
+#monitoriaForm input[type='text'],
+#monitoriaForm input[type='date'],
+#monitoriaForm input[type='time'],
+#monitoriaForm select {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    background-color: #f0f0f0; 
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #333;
+    box-sizing: border-box; 
+}
+
+/* Estilo de foco (borda azul) */
+#monitoriaForm input:focus,
+#monitoriaForm select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #024059;
+}
+
+/* Estilo do botão*/
+#botaoCriarMonitoria {
+    background-color: #024059;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+
+#botaoCriarMonitoria:hover {
+    background-color: #035a7d;
+}
+
+@media (max-width: 500px) {
+
+    /* 1. Faz o body parar de centralizar e de ter fundo cinza */
+    body {
+        justify-content: flex-start;
+        padding: 0;
+        
+        background-color: #ffffff !important;
+
+        height: 110vh;      
+        overflow: hidden;  
+    }
+
+    /* 2. Faz o H1 se alinhar ao form */
+    h1 {
+        padding-top: 20px;
+        font-size: 1.8rem;
+    }
+
+    /* 3. Faz o form ocupar a tela inteira (layout de "app") */
+    #monitoriaForm {
+        width: 100%;
+
+        /* Faz o form ocupar pelo menos a altura da tela */
+        min-height: 100vh;
+        /* Remove o estilo "card" */
+        border-radius: 0;
+        box-shadow: none;
+
+        /* Ajusta o padding para telas pequenas (menos nas laterais) */
+        padding: 20px;
+    }
+}

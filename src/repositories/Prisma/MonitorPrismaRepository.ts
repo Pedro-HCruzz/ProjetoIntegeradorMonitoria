@@ -6,8 +6,12 @@ class MonitorPrismaRepository{
     async getAll(): Promise <Monitor[]>{
         const dadosMonitor = await prisma.monitor.findMany({
             include : {
-                aluno : true,
-                monitorias : true
+                aluno : {
+                    select : {
+                        id : true,
+                        nome : true
+                    }
+                }
             }
         });
         return dadosMonitor;

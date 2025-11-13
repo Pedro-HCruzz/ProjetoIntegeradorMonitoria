@@ -15,9 +15,6 @@ form.addEventListener("submit", async (e) => {
     }
 
     try {
-        /*const API_URL = window.location.hostname === "localhost" ? "http://localhost:3000" : "https://projetointegeradormonitoria.onrender.com";*/ //essa lógica apresenta erro de cors pois no render estamos servindo a aplicação (front e back end) da mesma origem
-
-        // console.log(API_URL)
 
         const res = await fetch('/aluno', {
             method: "POST",
@@ -33,7 +30,7 @@ form.addEventListener("submit", async (e) => {
             } else if (result.erro === "DADOS_INCOMPLETOS") {
                 mensagem.textContent = "Preencha todos os campos corretamente!";
             } else {
-                mensagem.textContent = "Erro ao cadastrar! Verifique a matrícula!";
+                mensagem.textContent = "Erro ao cadastrar! Verifique se a matrícula possui 8 dígitos!";
             }
             mensagem.style.color = "red";
         } else {

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Houston Education</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/stylePopUp.css">
+    <link rel="shortcut icon" href="../assets/img/iconeHoustonEducation.ico" type="image/x-icon">
+</head>
+
+<body>
+    <nav>
+        <div class="icone">
+            <a href="#">
+                <img src="../assets/img/iconeMenu.png" alt="icone menu">
+            </a>
+        </div>
+        <div class="logo">
+            <a href="home.html">
+                <img src="../assets/img/iconeHoustonEducation.ico" alt="logo Houston Education">
+            </a>
+        </div>
+    </nav>
+
+
+
+    <aside id="menuLateral" class="menu-lateral">
+        <div class="menu-header">
+            <h2>Informações</h2>
+            <button id="fecharMenu">&times;</button>
+        </div>
+
+        <div class="menu-conteudo">
+            <p><strong>Usuário:</strong> <span class="usuarioNome"></span></p>
+            <p><strong>Perfil:</strong> <span id="perfilUsuarioMenu"></span></p>
+            <hr>
+            <a href="#">Quem somos nós?</a><br>
+            <a href="adicionarMonitorias.html" id="linkAdicionarMonitoria">Adicionar Monitorias</a>
+            <a href="logout.html" class="logout">Sair</a>
+        </div>
+    </aside>
+
+
+    <div class="boasvindas">
+        <h1>
+            Bem vindo, <span class="usuarioNome"></span>!
+        </h1>
+
+        <div class="divBuscar">
+            <img src="../assets/img/lupa.png" alt="" class="icone-lupa">
+            <input type="text" id="buscaMonitoria" placeholder="Buscar monitoria...">
+        </div>
+    </div>
+
+    <section class="sectionmonitorias">.
+        <div class="exibirmonitorias">
+            <h2 id="titulomonitorias">Monitorias Disponíveis</h2>
+            <ul id="listamonitorias">
+                <li>Carregando monitorias...</li>
+            </ul>
+        </div>
+    </section>
+    
+
+    <div id="popupInfoMonitoria" class="popup hidden">
+        <div class="popup-content">
+            <h2 id="popupTitulo"></h2>
+            <p id="popupDisciplina"></p>
+            <p id="popupMonitor"></p>
+            <p id="popupLocal"></p>
+            <p id="popupDataHora"></p>
+        </div>
+    </div>
+
+
+    <script type="module" src="../scripts/carregarNomeUsuario.js"></script>
+    <script type="module" src="../scripts/monitorias/carregarMonitorias.js"></script>
+    <script type="module" src="../scripts/monitorias/autorizadoMonitorias.js"></script>
+    <script type="module" src="../scripts/menuLateral/menuLateral.js"></script>
+    
+</body>
+
+</html>     

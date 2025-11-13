@@ -6,6 +6,7 @@ class MonitoriaPrismaRepository{
     
     async getAll(): Promise <Monitoria[]>{
         const dadosMonitoria = await prisma.monitoria.findMany({
+            
             include : {
                 disciplina : {
                     select : {

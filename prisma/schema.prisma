@@ -12,6 +12,7 @@ enum Perfil {
   MONITOR
   ADMIN
 }
+
 model Aluno {
   id         String      @id @default(dbgenerated("gen_random_uuid()"))
   nome       String
