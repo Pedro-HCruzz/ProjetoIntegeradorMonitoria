@@ -5,7 +5,7 @@ import { Response } from "express";
 const router = Router();
 
 
-router.get("/", authMiddleware, (req: AuthRequest, res: Response) => {
+router.get("/pages", authMiddleware, (req: AuthRequest, res: Response) => {
   res.json({ nome: req.user?.nome });
 });
 
