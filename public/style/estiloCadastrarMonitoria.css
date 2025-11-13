@@ -94,34 +94,26 @@ h1 {
 
 @media (max-width: 500px) {
 
-    /* 1. Faz o body parar de centralizar e de ter fundo cinza */
     body {
         justify-content: flex-start;
         padding: 0;
-        
         background-color: #ffffff !important;
 
-        height: 110vh;      
-        overflow: hidden;  
+        min-height: 100vh; /* deixa natural */
+        overflow-x: hidden; /* evita scrollbar lateral */
     }
 
-    /* 2. Faz o H1 se alinhar ao form */
-    h1 {
-        padding-top: 20px;
-        font-size: 1.8rem;
-    }
-
-    /* 3. Faz o form ocupar a tela inteira (layout de "app") */
     #monitoriaForm {
         width: 100%;
-
-        /* Faz o form ocupar pelo menos a altura da tela */
-        min-height: 100vh;
-        /* Remove o estilo "card" */
         border-radius: 0;
         box-shadow: none;
 
-        /* Ajusta o padding para telas pequenas (menos nas laterais) */
         padding: 20px;
+        min-height: auto; /* <-- remova OS 100vh */
+    }
+
+    h1 {
+        padding-top: 20px;
+        font-size: 1.8rem;
     }
 }

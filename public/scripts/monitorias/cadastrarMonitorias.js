@@ -40,7 +40,7 @@ form.addEventListener("submit", async (evento)=>{
             return;
         }
 
-        mensagem.innerHTML = 'Monitoria cadastrada com sucesso!<a href="home.html">Ver</a>'
+        mensagem.innerHTML = 'Monitoria cadastrada com sucesso!<a href="    home.html">Ver</a>'
         mensagem.style.color = "blue"
         form.reset(); // limpar os inputs 
 
