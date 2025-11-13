@@ -46,7 +46,7 @@ form.addEventListener("submit", async (e) => {
 
         // se chegou aqui, login válido, redireciona para a home
         localStorage.setItem("token", result.token);
-        window.location.href = "home.html";
+        window.location.href = "/pages/home.html";
 
     } catch (err) {
         mensagem.textContent = "Erro de rede ou servidor!";
