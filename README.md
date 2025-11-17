@@ -43,8 +43,12 @@ O projeto foi construído com base em uma stack moderna e escalável, empregando
 ## 👨‍💻 Autor
 
 **Henrique Gennari**  
-💼 https://www.linkedin.com/in/henriquegennari/
+💼 https://www.linkedin.com/in/henriquegennari
 📧 henriquegennarilemgruber@gmail.com
+
+**Pedro Henrique**  
+💼 https://www.linkedin.com/in/pedro-hcruzz
+📧 pedro.hcruzz14@gmail.com
 
 ---
 
