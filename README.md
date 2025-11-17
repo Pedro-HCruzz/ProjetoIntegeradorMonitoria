@@ -40,7 +40,7 @@ O projeto foi construído com base em uma stack moderna e escalável, empregando
 🔗 https://projetointegeradormonitoria.onrender.com/login
 ---
 
-## 👨‍💻 Autor
+## 👨‍💻 Autores
 
 **Henrique Gennari**  
 💼 https://www.linkedin.com/in/henriquegennari
