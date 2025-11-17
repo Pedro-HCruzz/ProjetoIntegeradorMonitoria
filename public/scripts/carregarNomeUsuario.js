@@ -14,7 +14,6 @@ export function carregarUsuario() {
     e.innerText = payload.nome;
   });
 
-  document.getElementById("perfilUsuarioMenu").innerText = `${payload.perfil}`
 }
 
 carregarUsuario();

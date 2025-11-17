@@ -33,6 +33,7 @@ form.addEventListener("submit", async (e) => {
                 mensagem.textContent = "Erro ao cadastrar! Verifique se a matrícula possui 8 dígitos!";
             }
             mensagem.style.color = "red";
+            
         } else {
             window.location.href = 'login.html'; 
         }
