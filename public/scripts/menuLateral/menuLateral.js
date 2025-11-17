@@ -1,14 +1,23 @@
+// Garanta que este seletor está correto para o seu ícone de menu
 const botaoMenu = document.querySelector('nav .icone img[src="../assets/img/iconeMenu.png"]');
 const menuLateral = document.getElementById('menuLateral');
-const botaoFechar = document.getElementById('fecharMenu');
+const overlay = document.getElementById('overlay');
 
-// Abrir menu ao clicar no ícone
-botaoMenu.addEventListener('click', (e) => {
-  e.preventDefault();
-  menuLateral.classList.add('ativo');
-});
+// Função "Toggle" (Alternar)
+const toggleMenu = (e) => {
+    e.preventDefault(); // Previne o clique
+    menuLateral.classList.toggle('ativo');
+    overlay.classList.toggle('ativo');
+};
 
-// Fechar menu ao clicar no botão X
-botaoFechar.addEventListener('click', () => {
-  menuLateral.classList.remove('ativo');
-});
+// Função SÓ para FECHAR (usada pelo overlay)
+const fecharMenu = () => {
+    menuLateral.classList.remove('ativo');
+    overlay.classList.remove('ativo');
+};
+
+// Clicar no ícone agora "troca" (abre ou fecha)
+botaoMenu.addEventListener('click', toggleMenu);
+
+// Clicar no overlay SÓ FECHA
+overlay.addEventListener('click', fecharMenu);

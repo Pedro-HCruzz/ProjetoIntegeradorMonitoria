@@ -12,7 +12,7 @@
 
 <body>
     <nav>
-        <div class="icone">
+        <div class="icone iconeMenu">
             <a href="#">
                 <img src="../assets/img/iconeMenu.png" alt="icone menu">
             </a>
@@ -26,22 +26,26 @@
 
 
 
-    <aside id="menuLateral" class="menu-lateral">
-        <div class="menu-header">
-            <h2>Informações</h2>
-            <button id="fecharMenu">&times;</button>
-        </div>
-
-        <div class="menu-conteudo">
-            <p><strong>Usuário:</strong> <span class="usuarioNome"></span></p>
-            <p><strong>Perfil:</strong> <span id="perfilUsuarioMenu"></span></p>
-            <hr>
-            <a href="#">Quem somos nós?</a><br>
-            <a href="adicionarMonitorias.html" id="linkAdicionarMonitoria">Adicionar Monitorias</a>
-            <a href="logout.html" class="logout">Sair</a>
+    <aside id="menuLateral" class="menuLateral">
+        <div class="menuConteudo">
+            <ul>
+                <li>
+                    <a href="home.html">
+                        <img src="../assets/img/iconeHome.png" alt="Icone Home">
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="cadastrarMonitoria.html" id="linkAdicionarMonitoria">
+                        <img src="../assets/img/iconeCadastrarMonitoria.png" alt="Icone Cadastrar Monitoria">
+                        <span>Cadastrar Monitoria</span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </aside>
 
+    <div id="overlay" class="overlay-menu"></div>
 
     <div class="boasvindas">
         <h1>
@@ -62,7 +66,6 @@
             </ul>
         </div>
     </section>
-    
 
     <div id="popupInfoMonitoria" class="popup hidden">
         <div class="popup-content">
@@ -79,7 +82,7 @@
     <script type="module" src="../scripts/monitorias/carregarMonitorias.js"></script>
     <script type="module" src="../scripts/monitorias/autorizadoMonitorias.js"></script>
     <script type="module" src="../scripts/menuLateral/menuLateral.js"></script>
-    
+
 </body>
 
-</html>     
+</html>
