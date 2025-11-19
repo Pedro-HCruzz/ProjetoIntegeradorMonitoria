@@ -36,7 +36,6 @@ body {
 
 .painelLogo img {
     width: 700px;
-    margin-bottom: 20px;
 }
 
 /* Estilo do Painel da Direita (Formulário) */
@@ -49,6 +48,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 40px;
+    padding-bottom: 50px;
     height: 100vh; /* Garante que ocupe a altura toda */
     text-align: left; /* Alinha o texto do form à esquerda */
 }
@@ -190,7 +190,7 @@ button[type='submit']:hover {
     .painelLogo img {
         width: 400px; 
         height: auto;
-        margin-bottom: 0;
+        margin-bottom: 30px;
     }
 
     /* Painel do formulário */
