@@ -188,10 +188,12 @@ button[type='submit']:hover {
 
     /* Ajusta o tamanho da logo */
     .painelLogo img {
-        width: 400px; 
+        width: 70%;
+        max-width: 250px;
         height: auto;
         margin-bottom: 30px;
     }
+
 
     /* Painel do formulário */
     #dadosLogin, #dadosCadastro {
