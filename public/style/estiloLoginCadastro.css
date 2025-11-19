@@ -7,12 +7,12 @@
         Arial, sans-serif;
 }
 
-html,
-body {
-    height: 100%;
-    overflow: hidden;
-    background-color: #f0f2f5;
+html, body {
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
+
 
 /* Estilo do Container principal que divide a tela */
 .containerPagina {
@@ -197,10 +197,11 @@ button[type='submit']:hover {
     #dadosLogin, #dadosCadastro {
         flex: none; 
         background-color: #ffffff; 
-        height: 60vh;
+        min-height: 60vh;
+        height: auto;
         width: 100%;
         justify-content: center; 
-        padding: 20px;
+        padding-bottom: 40px;
         overflow-y: auto; 
     }
 }
