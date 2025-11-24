@@ -17,9 +17,9 @@ export const monitoriaUpdateIdSchema = yup.object({
 });
 export const monitoriaUpdateSchema = yup.object({
   nome_monitoria: yup.string().optional(),
-  data: yup.date().optional(),
-  hora_inicio: yup.date().optional(),
-  hora_fim: yup.date().optional(),
+  data: yup.string().matches(/^\d{4}-\d{2}-\d{2}$/).optional(),
+  hora_inicio: yup.string().matches(/^\d{2}:\d{2}$/).optional(),
+  hora_fim: yup.string().matches(/^\d{2}:\d{2}$/).optional(),
   local: yup.string().optional(),
   monitorId: yup.string().optional(),
   disciplinaId: yup.string().optional(),

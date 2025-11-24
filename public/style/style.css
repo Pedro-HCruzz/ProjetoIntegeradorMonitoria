@@ -273,6 +273,11 @@ h2#titulomonitorias{
   height: 80px;
 }
 
+
+
+
+
+
 /*SIDE BAR*/
 .menuLateral {
     position: fixed;
@@ -400,4 +405,150 @@ h2#titulomonitorias{
   #listamonitorias {
     grid-template-columns: 1fr;
   }
+}
+
+
+
+
+
+
+
+ /* --- FUNDO DO MODAL (Overlay) ---  CSS DA MODAL DE ATUALIZAR MONITORIA*/ 
+.modal-overlay {
+    display: none; /* Começa invisível */
+    position: fixed; /* Fixa na tela, mesmo se rolar a página */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Preto com 60% de transparência */
+    z-index: 1000; /* Garante que fique acima de tudo */
+    
+    /* Centraliza o conteúdo (a caixinha branca) */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Classe que o JS vai adicionar para mostrar o modal */
+.modal-overlay.open {
+    display: flex;
+}
+
+/* --- A CAIXA BRANCA (Modal Content) --- */
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;       /* Em celulares ocupa 90% da tela */
+    max-width: 500px; /* Em PC nunca passa de 500px */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra suave */
+    
+    /* Uma leve animação de entrada */
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- CABEÇALHO DO MODAL --- */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.modal-header h2 {
+    color: #024059; /* Sua cor tema */
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.close-btn {
+    font-size: 2rem;
+    color: #aaa;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: #e74c3c; 
+}
+
+/* --- FORMULÁRIO --- */
+.campo-form-atualizar {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column; /* Label em cima, input embaixo */
+    text-align: left;
+}
+
+.campo-form-atualizar label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+/* Estilo unificado para inputs e selects */
+.campo-form-atualizar input,
+.campo-form-atualizar select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%; 
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.campo-form-atualizar input:focus,
+.campo-form-atualizar select:focus {
+    border-color: #024059; 
+}
+
+/* --- BOTÃO DE SALVAR --- */
+#submit_btn_atualizar {
+    width: 100%;
+    padding: 12px;
+    background-color: #024059; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+#submit_btn_atualizar:hover {
+    background-color: #035a7d; 
+}
+
+
+/*STYLE DO BOTAO*/
+.btn-update {
+padding: 8px 12px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-weight: 600;
+transition: background-color 0.3s, transform 0.2s;
+
+background-color: #607d8b;
+color: white;
+
+/* Caso o botão fique ao lado do 'Inscrever-se', isso dá um espacinho */
+margin-left: 10px; 
+}
+
+
+.btn-update:hover {
+background-color: #b87523;
+transform: scale(1.05); 
 }

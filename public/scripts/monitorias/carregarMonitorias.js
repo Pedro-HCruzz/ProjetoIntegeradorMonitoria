@@ -1,4 +1,5 @@
 import { getAlunoId } from "../utils/getAlunoId.js";
+import { getPerfil } from "../utils/getPerfil.js";
 
 
 async function carregarMonitorias() {
@@ -26,6 +27,7 @@ async function carregarMonitorias() {
 
         // pegando o objeto json que retornar para manipular informações, como dados da monitoria ( local, data, disciplina) e dados da inscricao (principalmente o id da inscricao para depois podermos excluir )
         const monitorias = await response.json();
+
         const inscricoes = await respInscricao.json();
 
         if (monitorias.length === 0){
@@ -55,6 +57,7 @@ async function carregarMonitorias() {
 
         // 🔹 Renderizar as monitorias
         monitorias.forEach((m) => {
+           
             const li = document.createElement("li");
             li.classList.add("cardmonitoria");
 
@@ -100,7 +103,6 @@ async function carregarMonitorias() {
 
 
             // 🔹 Botão de inscrição
-
             const divBotao = document.createElement("div");
             divBotao.classList.add("divbotao")
             const botaoInscrever = document.createElement("button");
@@ -122,7 +124,6 @@ async function carregarMonitorias() {
             li.appendChild(divBotao);
 
             // 🔹 Evento do botão de se inscrever
-
             botaoInscrever.addEventListener("click", async () => { // lógica da inscrição
                 const alunoId = getAlunoId()
                 
@@ -156,17 +157,104 @@ async function carregarMonitorias() {
                 }
             });
 
+            // LÓGICA PARA ATUALIZAR UMA MONITORIA -----------
+
+            // CRIANDO A MODAL E COLOCANDO OS VALORES NOS INPUTS
+            const idDoUsuario = getAlunoId();
+            const perfilDoUsuario = getPerfil();
+
+            if(m.monitorId == idDoUsuario || perfilDoUsuario == "ADMIN"){
+                const botaoUpdate = document.createElement("button")
+                botaoUpdate.textContent = "Atualizar Monitoria"
+                botaoUpdate.classList.add("btn-update")
+
+                botaoUpdate.addEventListener("click", (e) => {
+                    e.stopPropagation();
+
+                    const formUpdate = document.getElementById("formAtualizarMonitoria")
+                    const modalOverlay = document.getElementById("modalOverlay");
+
+                    document.getElementById("id_monitoria_hidden").value = m.id; // pegando o id da monitoria e salvando para o fetch 
+
+                    formUpdate.querySelector('input[name="nome_monitoria"]').value = m.nome_monitoria;
+                    formUpdate.querySelector('input[name="data"]').value = new Date(m.data).toISOString().split("T")[0];
+                    formUpdate.querySelector('input[name="hora_inicio"]').value = new Date (m.hora_inicio).toTimeString().slice(0,5);
+                    formUpdate.querySelector('input[name="hora_fim"]').value = new Date (m.hora_fim).toTimeString().slice(0,5);
+                    formUpdate.querySelector('input[name="local"]').value = m.local;
+                    formUpdate.querySelector('select[name="disciplinaId"]').value = m.disciplinaId; // talvez problema de id
+
+                    modalOverlay.classList.add("open");
+
+                });
+
+                divBotao.appendChild(botaoUpdate)
+            }
+
             lista.appendChild(li);
         });
 
-        // 🔹 Eventos globais do popup
+
+       
+
+        //ATUALIZANDO A MONITORIA THE FATO
+        const formAtualizar = document.getElementById("formAtualizarMonitoria")
+        formAtualizar.addEventListener("submit", async(e) =>{
+            e.preventDefault();
+
+            const idMonitoria = document.getElementById("id_monitoria_hidden").value;
+            console.log(idMonitoria)
+
+            const formData = new FormData(formAtualizar)
+            const dadosParaAtualizar = Object.fromEntries(formData)
+
+
+            delete dadosParaAtualizar.id_monitoria;
+
+            try {
+                const response = await fetch(`/monitoria/${idMonitoria}`, {
+                    method : "PUT", 
+                    headers : {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    },
+                    body : JSON.stringify(dadosParaAtualizar)
+                })
+                if (response.ok){
+                    alert("Monitoria atualizada com sucesso!")
+                    const modalOverlay = document.getElementById("modalOverlay");
+                    modalOverlay.classList.remove("open");
+                    formAtualizar.reset();
+                    carregarMonitorias();
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        })
         
+
+        //FECHAR A MODAL
+        const modalOverlay = document.getElementById("modalOverlay");
+        const btnFecharModal = document.querySelector(".close-btn");
+
+        const fecharModal = () =>{
+            modalOverlay.classList.remove("open");
+        };
+
+
+        if (btnFecharModal) {
+            btnFecharModal.addEventListener("click", fecharModal);
+        }
+
+
+
+
+
+        // 🔹 Eventos globais do popup
         btnFecharPopup.addEventListener("click", () => {
             popup.classList.add("hidden");
         });
 
         //Cancelar uma inscricao
-
         btnCancelarInscricaoPopup.addEventListener("click", async () => {
             const monitoriaAtiva = popup.dataset.targetButtonId;
             const botao = document.querySelector(`button[data-id="${monitoriaAtiva}"]`);

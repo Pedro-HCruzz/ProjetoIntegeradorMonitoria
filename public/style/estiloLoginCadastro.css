@@ -19,6 +19,7 @@ html, body {
     display: flex;
     width: 100vw;
     height: 100vh;
+    flex-direction: row; 
 }
 
 /* Estilo do Painel da Esquerda (Logo) */
@@ -35,7 +36,9 @@ html, body {
 }
 
 .painelLogo img {
-    width: 700px;
+    width: 100%;   
+    max-width: 700px;   
+    height: auto;      
 }
 
 /* Estilo do Painel da Direita (Formulário) */
@@ -163,19 +166,11 @@ button[type='submit']:hover {
 /* Responsividade */
 @media (max-width: 800px) {
 
-    /* Ajuste da Página */
-    html, body {
-        min-height: 100%;
-        overflow-x: hidden;
-        overflow-y: auto;
-    }
-
     .containerPagina {
-        flex-direction: column; 
-        height: 100vh; 
+        flex-direction: column;
     }
-
     /* Painel da Logo */
+
     .painelLogo {
         flex: none;
         height: 40vh; 

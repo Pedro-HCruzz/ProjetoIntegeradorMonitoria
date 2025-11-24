@@ -12,6 +12,8 @@ form.addEventListener("submit", async (evento)=>{
     const dadosForm = new FormData(form)
     const dados = Object.fromEntries(dadosForm)
 
+    console.log(dados)
+
     if(!dados.nome_monitoria || !dados.data || !dados.hora_inicio || !dados.hora_fim || !dados.local || !dados.disciplinaId || !dados.monitorId){
         mensagem.textContent = "Preencha todos os campos.";
         mensagem.style.color = "red";
@@ -22,7 +24,7 @@ form.addEventListener("submit", async (evento)=>{
     if(dados.monitorId !== idUsuario && perfilUsuario !== "ADMIN"){
         mensagem.textContent = "Você não pode criar monitorias para outros!"
         return;
-    }
+    } // validação para que um monitor só crie monitorias para ele mesmo 
         
     try {
         const response = await fetch("/monitoria", {
