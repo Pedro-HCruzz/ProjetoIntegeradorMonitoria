@@ -12,8 +12,6 @@ form.addEventListener("submit", async (evento)=>{
     const dadosForm = new FormData(form)
     const dados = Object.fromEntries(dadosForm)
 
-    console.log(dados)
-
     if(!dados.nome_monitoria || !dados.data || !dados.hora_inicio || !dados.hora_fim || !dados.local || !dados.disciplinaId || !dados.monitorId){
         mensagem.textContent = "Preencha todos os campos.";
         mensagem.style.color = "red";

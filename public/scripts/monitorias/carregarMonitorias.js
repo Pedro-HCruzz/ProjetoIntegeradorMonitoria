@@ -164,6 +164,8 @@ async function carregarMonitorias() {
             const perfilDoUsuario = getPerfil();
 
             if(m.monitorId == idDoUsuario || perfilDoUsuario == "ADMIN"){
+
+                console.log("entrou!")
                 const botaoUpdate = document.createElement("button")
                 botaoUpdate.textContent = "Atualizar Monitoria"
                 botaoUpdate.classList.add("btn-update")
