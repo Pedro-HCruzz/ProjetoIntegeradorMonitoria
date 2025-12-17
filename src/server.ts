@@ -20,6 +20,7 @@ server.use(cors({
   origin: ["https://projetointegeradormonitoria.onrender.com", "http://localhost:3000"],
   methods: ["GET", "POST", "PUT", "DELETE"]
 }));
+
 server.use(express.json());
 server.use(express.urlencoded({extended : true}));
 server.use(express.static(path.join(process.cwd(), "public"))); // criando um caminho direto para a pasta public, o current working directory pega a raiz e faz o caminho

@@ -6,7 +6,6 @@
     "outDir": "dist",
     "esModuleInterop": true,
     "strict": true,
-    // "types": ["node"] // <-- Geralmente não é mais necessário com NodeNext, mas pode deixar se precisar
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
