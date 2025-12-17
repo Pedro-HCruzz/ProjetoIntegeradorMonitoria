@@ -12,6 +12,8 @@ import inscriacaoRoutes from "../routes/Inscricao/inscricaoRoutes.js"
 const router = Router();
 
 
+
+
 router.get("/", (req: Request, res: Response) => {
   res.redirect("pages/login.html");
 }); // funciona apenas localmente

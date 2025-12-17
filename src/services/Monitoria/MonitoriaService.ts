@@ -22,7 +22,7 @@ class MonitoriaService {
             hora_inicio : horaInicio,   
             hora_fim : horaFim
         }
-        
+
         const dadosMonitoria = await this._monitoriaRepository.create(dadosAlterados)
 
         return dadosMonitoria;
