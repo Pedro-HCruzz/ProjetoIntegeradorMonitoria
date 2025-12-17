@@ -4,8 +4,17 @@ import routes from "./routes/index.js";
 import express from "express";
 import cors from "cors";
 
+
+
 dotenv.config();
 const server = express();
+
+/*server.use(cors({
+  origin: "https://projetointegeradormonitoria.onrender.com",
+  methods: ["GET", "POST", "PUT", "DELETE"]
+}));*/
+
+
 
 server.use(cors({
   origin: ["https://projetointegeradormonitoria.onrender.com", "http://localhost:3000"],

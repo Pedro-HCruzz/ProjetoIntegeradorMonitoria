@@ -41,6 +41,7 @@ class MonitoriaPrismaRepository{
         const novAMonitoria = await prisma.monitoria.create({
             data
         })
+
         return novAMonitoria;
     }
     async update(id : string, data : Monitoria) : Promise <Monitoria | null>{
